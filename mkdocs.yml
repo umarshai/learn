@@ -30,3 +30,4 @@ theme:
 nav:
   - Home: index.md
   - Angular: angular.md
+    - RxJs: rxjs.md
