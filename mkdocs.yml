@@ -14,8 +14,6 @@ theme:
     - content.code.copy
         - content.tooltips
     # - navigation.expand
-    - navigation.footer
-    - header.nohide
     - navigation.indexes
     # - navigation.instant
     # - navigation.instant.prefetch
