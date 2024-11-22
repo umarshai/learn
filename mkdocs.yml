@@ -1,6 +1,6 @@
 site_name: My Docs
 site_name: My site
-site_url: https://umarshai.github.io/learn/
+site_url: https://github.com/umarshai/learn
 theme:
   name: material
   features:
