@@ -54,7 +54,7 @@ RxJS operators help manage and manipulate streams of data effectively. They are 
 
 ---
 
-## 1. **Creation Operators**
+# 1. **Creation Operators**
 These are used to create new Observables.
 
 ### Example: `interval`
@@ -62,7 +62,7 @@ These are used to create new Observables.
 
 ---
 
-## 2. **Transformation Operators**
+# 2. **Transformation Operators**
 These operators transform or modify emitted values.
 
 ### Example: `map`
@@ -70,7 +70,7 @@ These operators transform or modify emitted values.
 
 ---
 
-## 3. **Filtering Operators**
+# 3. **Filtering Operators**
 These operators filter out unwanted data from the stream.
 
 ### Example: `filter`
@@ -78,7 +78,7 @@ These operators filter out unwanted data from the stream.
 
 ---
 
-## 4. **Combination Operators**
+# 4. **Combination Operators**
 These operators combine multiple Observables into one.
 
 ### Example: `merge`
@@ -86,7 +86,7 @@ These operators combine multiple Observables into one.
 
 ---
 
-## 5. **Utility Operators**
+# 5. **Utility Operators**
 These operators provide utility functions for Observables, like managing subscriptions.
 
 ### Example: `tap`
@@ -94,7 +94,7 @@ These operators provide utility functions for Observables, like managing subscri
 
 ---
 
-## 6. **Error Handling Operators**
+# 6. **Error Handling Operators**
 These operators help manage and recover from errors.
 
 ### Example: `catchError`
@@ -102,7 +102,7 @@ These operators help manage and recover from errors.
 
 ---
 
-## 7. **Multicasting Operators**
+# 7. **Multicasting Operators**
 These operators share a single Observable execution among multiple subscribers.
 
 ### Example: `share`
