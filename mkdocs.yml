@@ -5,13 +5,32 @@ theme:
   features:
     - navigation.tabs
     - navigation.sections
-    - toc.integrate
+    - navigation.instant
     - navigation.top
     - search.suggest
     - search.highlight
     - content.tabs.link
     - content.code.annotation
     - content.code.copy
+        - content.tooltips
+    # - navigation.expand
+    - navigation.footer
+    - header.nohide
+    - navigation.indexes
+    # - navigation.instant
+    # - navigation.instant.prefetch
+    # - navigation.instant.progress
+    # - navigation.prune
+    - navigation.sections
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+
   language: en
   palette:
     - scheme: slate
@@ -29,5 +48,12 @@ theme:
   # Page tree
 nav:
   - Home: index.md
-  - Angular: angular.md
-    - RxJs: rxjs.md
+  - Angular:
+      - RxJs: angular/rxjs.md
+      - Share Data between Components: angular/share-data.md
+
+
+markdown_extensions:
+  - toc:
+      permalink: true
+      title: On this page
