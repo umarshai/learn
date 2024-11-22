@@ -1,5 +1,4 @@
-site_name: My Docs
-site_name: My site
+site_name: Learn
 site_url: https://github.com/umarshai/learn
 theme:
   name: material
