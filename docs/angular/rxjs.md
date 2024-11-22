@@ -48,64 +48,64 @@ observable.subscribe(observer);
 ```
 
 
-# RxJS Operators and Real-Life Examples
+## RxJS Operators and Real-Life Examples
 
 RxJS operators help manage and manipulate streams of data effectively. They are categorized based on their functionality. Below is an overview of the main types of operators, real-life analogies, and examples.
 
 ---
 
-# 1. **Creation Operators**
+### 1. **Creation Operators**
 These are used to create new Observables.
 
-### Example: `interval`
+ Example: `interval`
 **Real Life Analogy:** A clock ticking every second, emitting the time at regular intervals.
 
 ---
 
-# 2. **Transformation Operators**
+### 2. **Transformation Operators**
 These operators transform or modify emitted values.
 
-### Example: `map`
+ Example: `map`
 **Real Life Analogy:** Converting temperatures from Celsius to Fahrenheit, transforming one data format into another.
 
 ---
 
-# 3. **Filtering Operators**
+### 3. **Filtering Operators**
 These operators filter out unwanted data from the stream.
 
-### Example: `filter`
+ Example: `filter`
 **Real Life Analogy:** Filtering a list of ages to keep only those who are adults (18 years or older).
 
 ---
 
-# 4. **Combination Operators**
+### 4. **Combination Operators**
 These operators combine multiple Observables into one.
 
-### Example: `merge`
+ Example: `merge`
 **Real Life Analogy:** Merging multiple live news feeds into a single stream for a unified viewing experience.
 
 ---
 
-# 5. **Utility Operators**
+### 5. **Utility Operators**
 These operators provide utility functions for Observables, like managing subscriptions.
 
-### Example: `tap`
+ Example: `tap`
 **Real Life Analogy:** Logging data passing through a pipeline for debugging without modifying it.
 
 ---
 
-# 6. **Error Handling Operators**
+### 6. **Error Handling Operators**
 These operators help manage and recover from errors.
 
-### Example: `catchError`
+ Example: `catchError`
 **Real Life Analogy:** Handling a server error by providing a default fallback response.
 
 ---
 
-# 7. **Multicasting Operators**
+### 7. **Multicasting Operators**
 These operators share a single Observable execution among multiple subscribers.
 
-### Example: `share`
+ Example: `share`
 **Real Life Analogy:** Sharing a live video feed with multiple viewers, where the feed is created only once.
 
 ---
