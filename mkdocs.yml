@@ -49,9 +49,32 @@ nav:
   - Angular:
       - RxJs: angular/rxjs.md
       - Share Data between Components: angular/share-data.md
-
-
+      - Forms: angular/forms.md
+      - Routing: angular/routing.md
+      - Core: angular/core-concepts.md
+      - Testing: angular/testing.md
+      - NgRx: angular/ngRx.md
+      - More: angular/more.md
+  - JavaScript:
+      - concepts: js/concepts.md
+      - methods: js/methods.md
+      - problems: js/problems.md
+  - Html:
+    - concepts: html/concepts.md
+    - samples: html/samples.md
+  - Css:
+      - concepts: css/concepts.md
+      - sass: css/sass.md
+      - samples: css/samples.md
+  - Typescript: typescript/typescript.md
+  - Best Practices:
+      - accesibility: best-practices/accesibility.md
+      - accesibility: best-practices/seo.md
+  - Interview Experiences:  interview-exp.md
 markdown_extensions:
+  # - pymdownx.highlight:
+  #     anchor_linenums: true
+  # - pymdownx.superfences
   - toc:
       permalink: true
       
