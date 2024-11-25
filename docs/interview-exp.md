@@ -1,14 +1,16 @@
-## Frequently Asked Questions
 
 ## value Labs
-
-    1. challenges faced in Angular Migration (15 -> 17)
-
+<details>
+  <summary><strong> 1. challenges faced in Angular Migration (15 -> 17)</strong></summary>
+  
         Change Zone.js deep imports like zone.js/bundles/zone-testing.js and zone.js/dist/zone to zone.js and zone.js/testing.
         Run ng update @angular/material@16.
         supports TypeScript version 4.9.3 or later.
         supports node.js versions: v16 and v18.
-    2. pipes y not directives
+</details>
+<details>
+  <summary><strong> 2. pipes y not directives</strong></summary>
+  
         Purpose Misalignment:
 
         Pipes are specifically designed to transform data in templates (e.g., converting dates, formatting numbers, filtering arrays).
@@ -18,42 +20,69 @@
         Using a directive for simple data transformation (like formatting a date) would require DOM manipulation, which is cumbersome and less efficient than a pipe.
         Directives and pipes serve different purposes in Angular. Pipes are specialized for data transformation in templates, while directives are meant to modify or control DOM elements' behavior. They are not interchangeable in most scenarios due to their differing design philosophies and applications.
 
-
-    3. promise methods
-        Promise Methods
-            1. Promise.resolve()
+</details> 
+<details>
+  <summary><strong>3. promise methods</strong></summary>
+             1. Promise.resolve()
             Returns a promise that resolves with the given value.
 
-            ```javascript
-            Copy code
-            Promise.resolve("Resolved value").then((value) => console.log(value));
-            // Output: Resolved value
-            ```
-            2. Promise.reject()
-            Returns a promise that rejects with the given reason.
+```typescript
+Copy code
+Promise.resolve("Resolved value").then((value) => console.log(value));
+// Output: Resolved value
+```
+2. Promise.reject()
+Returns a promise that rejects with the given reason.
 
-            ```javascript
-            Copy code
-            Promise.reject("Rejected value").catch((reason) => console.error(reason));
-            // Output: Rejected value
-            ```
+```javascript
+Copy code
+Promise.reject("Rejected value").catch((reason) => console.error(reason));
+// Output: Rejected value
+
+```
+
             3. Promise.all()
             Waits for all promises in an array to resolve. If any promise is rejected, it immediately rejects with that reason.
 
-            ```javascript
-            Copy code
-            const p1 = Promise.resolve(10);
-            const p2 = Promise.resolve(20);
-            const p3 = Promise.reject("Error");
+```javascript
+Copy code
+const p1 = Promise.resolve(10);
+const p2 = Promise.resolve(20);
+const p3 = Promise.reject("Error");
 
-            Promise.all([p1, p2, p3])
-            .then((results) => console.log(results))
-            .catch((error) => console.error(error));
-            // Output: Error
-            ```
-    4. event bubbling & event capturing
+Promise.all([p1, p2, p3])
+.then((results) => console.log(results))
+.catch((error) => console.error(error));
+// Output: Error
 
-        When an event occurs on an element, it goes through the following phases:
+```
+
+```typescript
+import { Observable } from 'rxjs';
+
+// Create an Observable
+const observable = new Observable((subscriber) => {
+  subscriber.next('Hello');
+  subscriber.next('RxJS');
+  subscriber.complete();
+});
+
+// Create an Observer
+const observer = {
+  next: (value: string) => console.log('Next:', value),
+  error: (err: any) => console.error('Error:', err),
+  complete: () => console.log('Completed!'),
+};
+
+// Subscribe to the Observable
+observable.subscribe(observer);
+
+```
+
+</details>
+<details>
+  <summary><strong>4. event bubbling & event capturing</strong></summary>
+   When an event occurs on an element, it goes through the following phases:
 
         Capturing Phase (Event Capturing):
 
@@ -68,27 +97,27 @@
         Event Bubbling
 In event bubbling, the event propagates upward from the target element to its ancestors. 
 
-        ```html
-            <div id="parent" style="padding: 20px; background-color: lightblue;">
-        Parent
-        <div id="child" style="padding: 20px; background-color: lightgreen;">
-            Child
-        </div>
-        </div>
+```html
+    <div id="parent" style="padding: 20px; background-color: lightblue;">
+Parent
+<div id="child" style="padding: 20px; background-color: lightgreen;">
+    Child
+</div>
+</div>
 
-        <script>
-        const parent = document.getElementById("parent");
-        const child = document.getElementById("child");
+<script>
+const parent = document.getElementById("parent");
+const child = document.getElementById("child");
 
-        parent.addEventListener("click", () => {
-            console.log("Parent clicked (Bubbling phase)");
-        });
+parent.addEventListener("click", () => {
+    console.log("Parent clicked (Bubbling phase)");
+});
 
-        child.addEventListener("click", () => {
-            console.log("Child clicked");
-        });
-        </script>
-        ```
+child.addEventListener("click", () => {
+    console.log("Child clicked");
+});
+</script>
+```
 
                             Event Capturing
                 In event capturing, the event propagates downward from the topmost ancestor to the target element.
@@ -107,7 +136,9 @@ In event bubbling, the event propagates upward from the target element to its an
         Use stopPropagation() to stop further propagation.
         Methods can be utilized inside event handlers to enhance functionality.
         Event delegation optimizes event handling by attaching listeners to parent elements.
-    5. serve side events
+</details>
+<details>
+  <summary><strong>5. serve side events</strong></summary>
             Server-Sent Events (SSE) in JavaScript
             Server-Sent Events (SSE) is a standard for pushing updates from a server to a web browser over a single HTTP connection. Unlike WebSockets, which allow two-way communication, SSE provides a unidirectional channel (server to client).
 
@@ -115,55 +146,57 @@ In event bubbling, the event propagates upward from the target element to its an
             The server sends data to the client over an HTTP connection.
             The client listens to the server using an EventSource object.
             Data is streamed as text/event-stream, which is continuously updated by the server.
-    6. flatmap
-    The map and flatMap methods are used to manipulate and transform arrays in JavaScript. They are part of the Array.prototype.
+</details>
+
+<details>
+  <summary><strong> 6. flatmap</strong></summary>
+   The map and flatMap methods are used to manipulate and transform arrays in JavaScript. They are part of the Array.prototype.
 
         1. map()
         The map method creates a new array by applying a function to each element of the original array.
         . flatMap()
         The flatMap method maps each element using a mapping function, then flattens the result into a new array. It's a combination of map() followed by flat() with a depth of 1.
 
-        ```js
-         const arr = [1, 2, 3];
-        const result = arr.flatMap(x => [x, x * 2]);
-        console.log(result);
-        // Output: [1, 2, 2, 4, 3, 6]
+```js
+    const arr = [1, 2, 3];
+const result = arr.flatMap(x => [x, x * 2]);
+console.log(result);
+// Output: [1, 2, 2, 4, 3, 6]
 
-        ```
+```
         map: For simple transformations.
         flatMap: For transformations requiring flattening by one level. It simplifies your code and improves readability and performance when dealing with nested structures.
 
-    7. filter
-    8. merge and forkjoin and merge map diff
-
-
-                In Angular's RxJS, merge, forkJoin, and mergeMap are commonly used operators for working with observables. Below is a detailed explanation of their differences and use cases.
+</details>
+<details>
+  <summary><strong>8. merge and forkjoin and merge map diff</strong></summary>
+   In Angular's RxJS, merge, forkJoin, and mergeMap are commonly used operators for working with observables. Below is a detailed explanation of their differences and use cases.
 
                 1. merge
                 Combines multiple observables into one, emitting values from all observables as they occur.
                 It subscribes to all observables simultaneously and merges their outputs into a single observable.
                 Syntax
 
-                ```typescript
-                    Copy code
-                    merge(observable1, observable2, ...).subscribe(observer);
-                ```
+```typescript
+    Copy code
+    merge(observable1, observable2, ...).subscribe(observer);
+```
                 Key Points
                 Emits values immediately as they are emitted by the source observables.
                 Useful for concurrent streams where order does not matter.
                 Example
 
-                ```typescript
-                    Copy code
-                    import { merge, of } from 'rxjs';
-                    import { delay } from 'rxjs/operators';
+```typescript
+    Copy code
+    import { merge, of } from 'rxjs';
+    import { delay } from 'rxjs/operators';
 
-                    const obs1 = of('A').pipe(delay(1000));
-                    const obs2 = of('B').pipe(delay(500));
+    const obs1 = of('A').pipe(delay(1000));
+    const obs2 = of('B').pipe(delay(500));
 
-                    merge(obs1, obs2).subscribe(value => console.log(value));
-                    // Output: B, A (based on their delays);
-                ```
+    merge(obs1, obs2).subscribe(value => console.log(value));
+    // Output: B, A (based on their delays);
+```
 
                 2. forkJoin
                 Combines multiple observables into one but waits for all observables to complete before emitting a single array of their last emitted values.
@@ -177,55 +210,62 @@ In event bubbling, the event propagates upward from the target element to its an
                 Ideal for executing parallel tasks where results are interdependent.
                 Example
 
-                ```typescript
-                Copy code
-                import { forkJoin, of } from 'rxjs';
-                import { delay } from 'rxjs/operators';
+```typescript
+Copy code
+import { forkJoin, of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
-                const obs1 = of('A').pipe(delay(1000));
-                const obs2 = of('B').pipe(delay(500));
+const obs1 = of('A').pipe(delay(1000));
+const obs2 = of('B').pipe(delay(500));
 
-                forkJoin([obs1, obs2]).subscribe(value => console.log(value));
-                // Output: ['A', 'B'] (after all observables complete)
-                ```
+forkJoin([obs1, obs2]).subscribe(value => console.log(value));
+// Output: ['A', 'B'] (after all observables complete)
+```
 
                 3. mergeMap
                 Projects each value from the source observable into an inner observable, then flattens the results into a single observable.
                 Subscribes to multiple inner observables concurrently and merges their outputs.
                 Syntax
-                typescript
-                Copy code
-                source.pipe(mergeMap(value => innerObservable)).subscribe(observer);
-                Key Points
-                Useful when you need to map each emitted value to another observable and merge the results.
-                Inner observables emit values as soon as they are available.
-                Example
-                typescript
-                Copy code
-                import { of } from 'rxjs';
-                import { mergeMap, delay } from 'rxjs/operators';
+```typescript
+Copy code
+source.pipe(mergeMap(value => innerObservable)).subscribe(observer);
+Key Points
+Useful when you need to map each emitted value to another observable and merge the results.
+Inner observables emit values as soon as they are available.
+Example
+typescript
+Copy code
+import { of } from 'rxjs';
+import { mergeMap, delay } from 'rxjs/operators';
 
-                const source = of('A', 'B');
-                source
-                .pipe(
-                    mergeMap(value =>
-                    of(`${value} processed`).pipe(delay(1000))
-                    )
-                )
-                .subscribe(value => console.log(value));
-                // Output: A processed, B processed (concurrently after ~1s)
-
-    9. Banking sector
-            Secure API Communication
+const source = of('A', 'B');
+source
+.pipe(
+    mergeMap(value =>
+    of(`${value} processed`).pipe(delay(1000))
+    )
+)
+.subscribe(value => console.log(value));
+// Output: A processed, B processed (concurrently after ~1s)
+```
+</details>
+<details>
+  <summary><strong>9. Banking sector</strong></summary>
+              Secure API Communication
             Use CORS to restrict access to APIs from specific domains.
             Validate and sanitize all API inputs on the server side.
             Minimizing Payload
             Use Angular CLI's build optimizer and tree-shaking to reduce bundle size.
             Compress assets using Gzip or Brotli.
-    10. new feature in 17 like signals
-        ts 5.X
+</details>
+<details>
+  <summary><strong>10. new feature in 17 like signals</strong></summary>
+          ts 5.X
         new control floe statements @if
-    11.flex is it fror responsiveness
+</details>
+<details>
+  <summary><strong>11.flex is it fror responsiveness</strong></summary>
+       
         How Flexbox Helps in Responsiveness
         Dynamic Layouts:
 
@@ -241,37 +281,52 @@ In event bubbling, the event propagates upward from the target element to its an
 
         The flex-grow, flex-shrink, and flex-basis properties provide control over how items resize relative to their container and siblings.
 
-            ```html
-                <div class="container">
-                <div class="item">Item 1</div>
-                <div class="item">Item 2</div>
-                <div class="item">Item 3</div>
-                </div>
+```typescript
+    <div class="container">
+    <div class="item">Item 1</div>
+    <div class="item">Item 2</div>
+    <div class="item">Item 3</div>
+    </div>
 
-                <style>
-                .container {
-                    display: flex;
-                    justify-content: space-between;
-                    gap: 10px;
-                }
+    <style>
+    .container {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+    }
 
-                .item {
-                    background-color: lightblue;
-                    padding: 20px;
-                    flex-grow: 1;
-                }
+    .item {
+        background-color: lightblue;
+        padding: 20px;
+        flex-grow: 1;
+    }
 
-                @media (max-width: 600px) {
-                    .container {
-                    flex-direction: column; /* Stack items vertically on smaller screens */
-                    }
-                }
-                </style>
-                ```
+    @media (max-width: 600px) {
+        .container {
+        flex-direction: column; /* Stack items vertically on smaller screens */
+        }
+    }
+    </style>
+```
+</details>
+
+<details>
+  <summary><strong> 12. cherry pick in git 
+</strong></summary>
+  Test
+</details>
+    
 
 
-    12. cherry pick in git 
+               
 
+    
+
+    
+
+    
+
+   
 
 ## Tek Systems
 

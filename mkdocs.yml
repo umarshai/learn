@@ -69,12 +69,18 @@ nav:
   - Typescript: typescript/typescript.md
   - Best Practices:
       - accesibility: best-practices/accesibility.md
-      - accesibility: best-practices/seo.md
-  - Interview Experiences:  interview-exp.md
+      - seo: best-practices/seo.md
+  - Frequently Asked Questions:  interview-exp.md
+  - Programs:
+      - Interview Programs: programs/interview-programs.md
+      - Practice Programs: programs/practice-programs.md
+ 
 markdown_extensions:
-  # - pymdownx.highlight:
-  #     anchor_linenums: true
-  # - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
   - toc:
       permalink: true
+extra_javascript:
+  - script/countdown.js      
       
