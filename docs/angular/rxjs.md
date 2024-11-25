@@ -168,7 +168,6 @@ The `merge` operator in RxJS is used to combine multiple Observables into a sing
 
 ---
 
-## Syntax
 ```typescript
 import { merge } from 'rxjs';
 
