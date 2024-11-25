@@ -145,20 +145,6 @@ of('A', 'B').pipe(
 
 
 ```
-
-### 2. mergeMap
-
-
-```typescript
-import { of, interval } from 'rxjs';
-import { switchMap, take } from 'rxjs/operators';
-
-of(1, 2, 3).pipe(
-  switchMap(value => interval(1000).pipe(take(2))),
-).subscribe(console.log);
-// Output: 0, 1 (repeats for each value but unsubscribes from previous Observables)
-
-```
 ###  merge
 The `merge` operator in RxJS is used to combine multiple Observables into a single Observable. It concurrently subscribes to all input Observables and emits their values as they arrive.
 
@@ -173,6 +159,8 @@ import { merge } from 'rxjs';
 
 merge(observable1, observable2, ...observableN);
 ``` 
+
+
 
 ### 3. switchMap
 Switches to a new inner Observable and unsubscribes from the previous one.
