@@ -112,3 +112,124 @@ These operators share a single Observable execution among multiple subscribers.
 
 RxJS operators allow for powerful manipulation of data streams and make managing complex asynchronous operations more efficient and intuitive.
 
+# Commonly Used RxJS Operators
+
+RxJS (Reactive Extensions for JavaScript) provides powerful operators to handle asynchronous data streams effectively. Below are details of some commonly used operators with simple examples.
+
+## 1. **map**
+Transforms the items emitted by an Observable by applying a function to each item.
+
+### Example
+```typescript
+import { of } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+of(1, 2, 3).pipe(
+  map(x => x * 2)
+).subscribe(console.log);
+// Output: 2, 4, 6
+```
+
+### 2. mergeMap
+Projects each source value to an Observable, which is merged into the output Observable.
+
+### Example
+```typescript
+import { of } from 'rxjs';
+import { mergeMap } from 'rxjs/operators';
+
+of('A', 'B').pipe(
+  mergeMap(letter => of(`${letter}1`, `${letter}2`))
+).subscribe(console.log);
+// Output: A1, A2, B1, B2
+
+
+```
+
+### 2. mergeMap
+
+### Example
+
+```typescript
+import { of, interval } from 'rxjs';
+import { switchMap, take } from 'rxjs/operators';
+
+of(1, 2, 3).pipe(
+  switchMap(value => interval(1000).pipe(take(2))),
+).subscribe(console.log);
+// Output: 0, 1 (repeats for each value but unsubscribes from previous Observables)
+
+```
+### 3. switchMap
+Switches to a new inner Observable and unsubscribes from the previous one.
+
+
+### Example
+
+```typescript
+import { of, interval } from 'rxjs';
+import { switchMap, take } from 'rxjs/operators';
+
+of(1, 2, 3).pipe(
+  switchMap(value => interval(1000).pipe(take(2))),
+).subscribe(console.log);
+// Output: 0, 1 (repeats for each value but unsubscribes from previous Observables)
+
+```
+### 4. debounceTime
+Emits a value from the source Observable only after a particular time span has passed without another source emission.
+### Example
+
+```typescript
+import { fromEvent } from 'rxjs';
+import { debounceTime, map } from 'rxjs/operators';
+
+fromEvent(document, 'click').pipe(
+  debounceTime(500),
+  map(() => 'Clicked!')
+).subscribe(console.log);
+// Output: 'Clicked!' (if no further click for 500ms)
+
+```
+
+### 5. distinctUntilChanged
+Suppresses duplicate consecutive values from the source Observable.
+
+### Example
+
+```typescript
+import { of } from 'rxjs';
+import { distinctUntilChanged } from 'rxjs/operators';
+
+of(1, 1, 2, 2, 3, 3).pipe(
+  distinctUntilChanged()
+).subscribe(console.log);
+// Output: 1, 2, 3
+
+```
+
+### Combining operators
+
+### Example
+
+```typescript
+import { fromEvent } from 'rxjs';
+import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+
+const searchInput = document.getElementById('search');
+
+fromEvent(searchInput, 'input').pipe(
+  map((event: any) => event.target.value),
+  debounceTime(300),
+  distinctUntilChanged()
+).subscribe(value => console.log(`Search: ${value}`));
+// Output: Logs the search input after 300ms debounce and only if the value changes
+
+```
+
+### diff
+* map	Transforms each value emitted by the source.
+* mergeMap	Maps to inner Observables and merges their output.
+* switchMap	Switches to a new Observable, unsubscribing previous.
+* debounceTime	Emits values after a pause between emissions.
+* distinctUntilChanged	Filters out consecutive duplicate values.
