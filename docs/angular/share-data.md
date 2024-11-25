@@ -40,6 +40,34 @@ export class ChildComponent {
 <child-component [parentData]="dataFromParent" (childEvent)="receiveData($event)"></child-component>
 ```
 ---
+
+# Angular Decorators: `@ViewChild`, `@ViewChildren`, `@ContentChild`, and `@ContentChildren`
+
+Angular provides these decorators to query and interact with components, directives, or elements in a component's **view** or **content projection**.
+
+---
+
+## Key Differences
+
+| Decorator           | Scope               | Purpose                                                                                   |
+|---------------------|---------------------|-------------------------------------------------------------------------------------------|
+| **@ViewChild**      | Component's View   | Selects a single DOM element, directive, or child component within the component's view.  |
+| **@ViewChildren**   | Component's View   | Selects multiple elements, directives, or components within the component's view.         |
+| **@ContentChild**   | Content Projection | Selects a single projected DOM element, directive, or child component.                    |
+| **@ContentChildren**| Content Projection | Selects multiple projected elements, directives, or components.                           |
+
+---
+
+## 1. **@ViewChild**
+
+### Description
+`@ViewChild` is used to access a single child element, directive, or component located **inside the component's template (view)**.
+
+### Syntax
+```typescript
+@ViewChild(selector: Type | string, { static?: boolean }): QueryList | ElementRef
+```
+
 ### 2. Shared Service (Any Component)
 typescript
 Copy code
