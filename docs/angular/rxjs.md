@@ -162,7 +162,6 @@ of(1, 2, 3).pipe(
 ###  merge
 The `merge` operator in RxJS is used to combine multiple Observables into a single Observable. It concurrently subscribes to all input Observables and emits their values as they arrive.
 
-## Key Points
 - **Combines multiple Observables:** Emits values from all input Observables in parallel.
 - **Order of emissions:** Maintains the order of values emitted by each Observable but not the order of the Observables themselves.
 - **Completes:** Completes only when all input Observables have completed.
