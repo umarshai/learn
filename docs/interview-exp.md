@@ -319,6 +319,9 @@ source
 
 
                
+    12. cherry pick in git 
+    13. other methods as promise in js async something 
+    14. http and $ http diff
 
     
 
