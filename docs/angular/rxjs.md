@@ -112,14 +112,14 @@ These operators share a single Observable execution among multiple subscribers.
 
 RxJS operators allow for powerful manipulation of data streams and make managing complex asynchronous operations more efficient and intuitive.
 
-# Commonly Used RxJS Operators
+## Commonly Used RxJS Operators
 
 RxJS (Reactive Extensions for JavaScript) provides powerful operators to handle asynchronous data streams effectively. Below are details of some commonly used operators with simple examples.
 
 ## 1. **map**
 Transforms the items emitted by an Observable by applying a function to each item.
 
-### Example
+
 ```typescript
 import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -133,7 +133,7 @@ of(1, 2, 3).pipe(
 ### 2. mergeMap
 Projects each source value to an Observable, which is merged into the output Observable.
 
-### Example
+
 ```typescript
 import { of } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
@@ -148,7 +148,6 @@ of('A', 'B').pipe(
 
 ### 2. mergeMap
 
-### Example
 
 ```typescript
 import { of, interval } from 'rxjs';
@@ -160,11 +159,28 @@ of(1, 2, 3).pipe(
 // Output: 0, 1 (repeats for each value but unsubscribes from previous Observables)
 
 ```
+###  merge
+The `merge` operator in RxJS is used to combine multiple Observables into a single Observable. It concurrently subscribes to all input Observables and emits their values as they arrive.
+
+## Key Points
+- **Combines multiple Observables:** Emits values from all input Observables in parallel.
+- **Order of emissions:** Maintains the order of values emitted by each Observable but not the order of the Observables themselves.
+- **Completes:** Completes only when all input Observables have completed.
+
+---
+
+## Syntax
+```typescript
+import { merge } from 'rxjs';
+
+merge(observable1, observable2, ...observableN);
+``` 
+
 ### 3. switchMap
 Switches to a new inner Observable and unsubscribes from the previous one.
 
 
-### Example
+
 
 ```typescript
 import { of, interval } from 'rxjs';
@@ -178,7 +194,7 @@ of(1, 2, 3).pipe(
 ```
 ### 4. debounceTime
 Emits a value from the source Observable only after a particular time span has passed without another source emission.
-### Example
+
 
 ```typescript
 import { fromEvent } from 'rxjs';
@@ -195,7 +211,7 @@ fromEvent(document, 'click').pipe(
 ### 5. distinctUntilChanged
 Suppresses duplicate consecutive values from the source Observable.
 
-### Example
+
 
 ```typescript
 import { of } from 'rxjs';
@@ -210,7 +226,7 @@ of(1, 1, 2, 2, 3, 3).pipe(
 
 ### Combining operators
 
-### Example
+
 
 ```typescript
 import { fromEvent } from 'rxjs';
