@@ -46,9 +46,11 @@ const g = ['a', 'b', 'g', 'a']
 g.sort();
 console.log(g)
 
-const e = [5,5,5,6,61,1,1]
-e.sort();
-console.log(e);
+// Create an Array
+const points = [40, 100, 1, 5, 25, 10];
+
+// Sort the Array
+points.sort(function(a, b){return a-b});
 ```
 
 </details>
