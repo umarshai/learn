@@ -1,3 +1,18 @@
+# Core concepts
+## About angular
+    // about
+    // architecture
+    // diff btn  v1 & v2+
+    // diff btn js & ts
+    //polyfills & transpiler
+    // compiler
+## Lifecycle hooks
+## Modules, components, services  (view-encapsu, inehitance compo)
+## Data Binding
+## Directives 
+## ng-template, ng-content
+
+
 # Angular Singleton Service
 
 A **Singleton Service** in Angular is a service that exists as a single instance throughout the lifecycle of an application. This ensures that the same instance of the service is shared across the entire app, providing a centralized way to manage data, logic, or shared state.

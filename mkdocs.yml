@@ -48,6 +48,7 @@ nav:
   - Home: index.md
   - Angular:
       - RxJs: angular/rxjs.md
+      - Pipes-Intersceptors: angular/pipes-interceptors.md
       - Share Data between Components: angular/share-data.md
       - Forms: angular/forms.md
       - Routing: angular/routing.md
@@ -77,6 +78,13 @@ nav:
       - Practice Programs: programs/practice-programs.md
  
 markdown_extensions:
+  - admonition
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  - tables
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.superfences

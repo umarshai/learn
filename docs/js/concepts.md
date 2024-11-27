@@ -35,7 +35,6 @@ Hoisting is JavaScript's default behavior of moving declarations (variables and 
 
 ---
 
-### **Advanced Topics**
 
 #### 5. **What are closures in JavaScript?**
 A closure is a function that remembers the variables from its outer scope, even after the outer function has finished executing. Closures are used to create private variables and maintain state.
