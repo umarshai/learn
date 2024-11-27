@@ -553,3 +553,10 @@ setTimeout(() => {
 }, 4000);
 
 ```
+
+|Subject |  Type	Behavior |	Use Case	| Example Scenario|
+| ----------- | ------------------------------------ | ---|---| 
+|Subject	    | Multicasts values to multiple subscribers but does not store the last value.|	Event emitter for user actions.|	Broadcasting button clicks to components.|
+|BehaviorSubject	|Stores the latest value and emits it to new subscribers immediately.| 	Maintaining state and broadcasting changes.|	User authentication or theme settings.|
+|ReplaySubject |	Replays a specified number of previous values to new subscribers. |	Providing history or recent data.|Chat messages or recent notifications.|
+|AsyncSubject	| Emits only the final value and only after the observable completes.	 | Caching or handling the result of a single operation.	| API request caching or configuration loading.|
