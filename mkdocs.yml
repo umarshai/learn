@@ -66,6 +66,8 @@ nav:
       - concepts: js/concepts.md
       - methods: js/methods.md
       - problems: js/problems.md
+      - Typescript: typescript/typescript.md
+
   - Html:
     - concepts: html/concepts.md
     - samples: html/samples.md
@@ -73,7 +75,6 @@ nav:
       - concepts: css/concepts.md
       - sass: css/sass.md
       - samples: css/samples.md
-  - Typescript: typescript/typescript.md
   - Best Practices:
       - Best Practices: best-practices/best-practices.md
       - Accesibility: best-practices/accesibility.md
