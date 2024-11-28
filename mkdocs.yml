@@ -54,6 +54,7 @@ nav:
   - Home: index.md
   - Angular:
       - RxJs: angular/rxjs.md
+      - Promises: angular/promise.md
       - Pipes-Intersceptors: angular/pipes-interceptors.md
       - Share Data between Components: angular/share-data.md
       - Forms: angular/forms.md

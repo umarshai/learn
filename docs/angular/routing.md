@@ -1,341 +1,360 @@
-Angular routing is a powerful feature that allows you to create single-page applications (SPAs) with multiple views without reloading the page. Here's an overview of the key concepts and components involved in Angular routing:
+ 
+!!! note "Angular Routing"
+      Angular routing is a powerful feature that allows you to create single-page applications (SPAs) with multiple views without reloading the page. Here's an overview of the key concepts and components involved in Angular routing:
 
-1. Setting Up Angular Routing
-When you create a new Angular application, you can set up routing by adding --routing to the Angular CLI command:
+      1. Setting Up Angular Routing
+      When you create a new Angular application, you can set up routing by adding --routing to the Angular CLI command:
 
-bash
+      bash
 
-ng new my-app --routing
-This command generates a AppRoutingModule file for configuring routes.
+      ng new my-app --routing
+      This command generates a AppRoutingModule file for configuring routes.
 
-2. The Router Module
-Import the RouterModule in the routing module to enable routing. It also provides directives like router-outlet and routerLink for navigation and displaying routed components.
+      2. The Router Module
+      Import the RouterModule in the routing module to enable routing. It also provides directives like router-outlet and routerLink for navigation and displaying routed components.
 
-Example of a routing module:
+      Example of a routing module:
 
-```typescript
 
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { AboutComponent } from './about/about.component';
+  ```typescript
 
-const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
-  { path: 'about', component: AboutComponent },
-  { path: '**', component: NotFoundComponent }, // Wildcard route for a 404 page
-];
+  import { NgModule } from '@angular/core';
+  import { RouterModule, Routes } from '@angular/router';
+  import { HomeComponent } from './home/home.component';
+  import { AboutComponent } from './about/about.component';
 
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
-3. Router Outlet
-The <router-outlet> directive acts as a placeholder where routed components are displayed. Place it in your main app component template:
+  const routes: Routes = [
+    { path: '', redirectTo: '/home', pathMatch: 'full' },
+    { path: 'home', component: HomeComponent },
+    { path: 'about', component: AboutComponent },
+    { path: '**', component: NotFoundComponent }, // Wildcard route for a 404 page
+  ];
 
-html
+  @NgModule({
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
+  })
+  export class AppRoutingModule { }
+  3. Router Outlet
+  The <router-outlet> directive acts as a placeholder where routed components are displayed. Place it in your main app component template:
 
-<router-outlet></router-outlet>
-4. Navigating with RouterLink and Programmatic Navigation
-Use routerLink in templates to navigate:
+  html
 
-html
+  <router-outlet></router-outlet>
+  4. Navigating with RouterLink and Programmatic Navigation
+  Use routerLink in templates to navigate:
 
-<a routerLink="/home">Home</a>
-<a routerLink="/about">About</a>
-Alternatively, navigate programmatically using the Router service:
-```
+  html
 
-```typescript
+  <a routerLink="/home">Home</a>
+  <a routerLink="/about">About</a>
+  Alternatively, navigate programmatically using the Router service:
+  ```
 
-import { Router } from '@angular/router';
+  ```typescript
 
-constructor(private router: Router) {}
+  import { Router } from '@angular/router';
 
-goToAbout() {
-  this.router.navigate(['/about']);
-}
-```
-5. Route Parameters
-Parameters can be added to routes for dynamic content. Use the ActivatedRoute service to access them.
+  constructor(private router: Router) {}
 
-Define a route with a parameter:
-
-``` typescript
-
-{ path: 'user/:id', component: UserComponent }
-```
-Access the parameter in the component:
-
-```typescript
-
-import { ActivatedRoute } from '@angular/router';
-
-constructor(private route: ActivatedRoute) {}
-
-ngOnInit() {
-  const userId = this.route.snapshot.paramMap.get('id');
-} 
-```
-
-6. Child Routes
-Use child routes to create nested routing within a component:
-
-```typescript
-
-const routes: Routes = [
-  { 
-    path: 'dashboard', 
-    component: DashboardComponent,
-    children: [
-      { path: 'settings', component: SettingsComponent },
-      { path: 'profile', component: ProfileComponent }
-    ]
+  goToAbout() {
+    this.router.navigate(['/about']);
   }
-];
-```
-7. Lazy Loading
-Lazy loading allows you to load feature modules only when they are needed, optimizing performance. Define a module route with loadChildren:
+  ```
+## Route Parameters 
+!!! note "Route Parameters"
+    Parameters can be added to routes for dynamic content. Use the ActivatedRoute service to access them.
 
-```typescript
+    Define a route with a parameter:
 
-const routes: Routes = [
-  { 
-    path: 'admin',
-    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
-  }
-];
-```
-8. Route Guards
-Route guards control access to routes. Angular provides different types of guards:
+  ``` typescript
 
-CanActivate: Checks if a user can access a route.
-CanActivateChild: Checks access to child routes.
-CanDeactivate: Checks if a user can leave a route.
-Resolve: Pre-fetches data before loading a route.
-Example of a guard:
+  { path: 'user/:id', component: UserComponent }
+  ```
+  Access the parameter in the component:
 
-```typescript
+  ```typescript
 
-import { Injectable } from '@angular/core';
-import { CanActivate } from '@angular/router';
+  import { ActivatedRoute } from '@angular/router';
 
-@Injectable({
-  providedIn: 'root',
-})
-export class AuthGuard implements CanActivate {
-  canActivate(): boolean {
-    // Replace with actual authentication check
-    return isAuthenticated();
-  }
-}
-```
-9. Handling 404s (Wildcards)
-Add a wildcard route to catch unmatched paths:
+  constructor(private route: ActivatedRoute) {}
 
-```typescript 
+  ngOnInit() {
+    const userId = this.route.snapshot.paramMap.get('id');
+  } 
+  ```
 
-{ path: '**', component: PageNotFoundComponent }
-```
-10. Router Events
-Angular's Router service emits various events during routing. You can subscribe to these to perform actions at specific routing stages:
+## Child Routes
+!!! note 
+        Use child routes to create nested routing within a component:
 
-```typescript
+  ```typescript
 
-import { Router, NavigationEnd } from '@angular/router';
-
-constructor(private router: Router) {
-  this.router.events.subscribe((event) => {
-    if (event instanceof NavigationEnd) {
-      console.log('Navigation ended:', event);
+  const routes: Routes = [
+    { 
+      path: 'dashboard', 
+      component: DashboardComponent,
+      children: [
+        { path: 'settings', component: SettingsComponent },
+        { path: 'profile', component: ProfileComponent }
+      ]
     }
-  });
-}
-```
-Summary
-In Angular, routing enables you to build flexible, navigable SPAs with dynamic URLs.
+  ];
+  ```
+## Lazy Loading
+!!! note 
+      Lazy loading allows you to load feature modules only when they are needed, optimizing performance. Define a module route with loadChildren:
+  
 
-Absolutely! Here are some additional concepts and best practices for Angular routing that will help you work with more advanced scenarios.
+  ```typescript
 
-1. Route Resolvers
-Resolvers allow you to pre-fetch data before navigating to a route. This is useful for loading essential data upfront to avoid displaying partially-loaded views.
+  const routes: Routes = [
+    { 
+      path: 'admin',
+      loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
+    }
+  ];
+  ```
+## Route Guards  
+!!! note
+      Route guards control access to routes. Angular provides different types of guards:
 
-Define a resolver service:
+      * CanActivate: Checks if a user can access a route.
+      * CanActivateChild: Checks access to child routes.
+      * CanDeactivate: Checks if a user can leave a route.
+      * Resolve: Pre-fetches data before loading a route.
+      Example of a guard:
 
-```typescript
+  ```typescript
 
-import { Injectable } from '@angular/core';
-import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
-import { Observable } from 'rxjs';
-import { UserService } from './user.service';
+  import { Injectable } from '@angular/core';
+  import { CanActivate } from '@angular/router';
 
-@Injectable({ providedIn: 'root' })
-export class UserResolver implements Resolve<User> {
-  constructor(private userService: UserService) {}
-
-  resolve(route: ActivatedRouteSnapshot): Observable<User> {
-    return this.userService.getUser(route.paramMap.get('id'));
+  @Injectable({
+    providedIn: 'root',
+  })
+  export class AuthGuard implements CanActivate {
+    canActivate(): boolean {
+      // Replace with actual authentication check
+      return isAuthenticated();
+    }
   }
-} 
-```
-Use it in your route configuration:
+  ```
+## Handling 404s (Wildcards)  
+!!! note 
+      Add a wildcard route to catch unmatched paths:
 
-```typescript
+  ```typescript 
 
-{ 
-  path: 'user/:id', 
-  component: UserComponent,
-  resolve: { user: UserResolver }
-}
-```
-Access the resolved data in the component:
+  { path: '**', component: PageNotFoundComponent }
+  ```
+## Router Events
+!!! note  
+      Angular's Router service emits various events during routing. You can subscribe to these to perform actions at specific routing stages:
 
-```typescript
+  ```typescript
 
-ngOnInit() {
-  this.route.data.subscribe(data => {
-    this.user = data['user'];
-  });
-}
-```
-2. Preloading Modules
-Preloading improves performance by loading lazy-loaded modules in the background, so they're ready if needed. Angular provides built-in preloading strategies:
+  import { Router, NavigationEnd } from '@angular/router';
 
-NoPreloading (default): Modules are not preloaded.
-PreloadAllModules: All lazy-loaded modules are preloaded.
-Enable preloading in the RouterModule:
-
-```typescript
-
-imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })]
-```
-3. Custom Preloading Strategy
-You can create a custom preloading strategy for more granular control over which modules to preload.
-
-Example of a custom preloading strategy:
-
-```typescript
-
-import { PreloadingStrategy, Route } from '@angular/router';
-import { Observable, of } from 'rxjs';
-
-export class CustomPreloadingStrategy implements PreloadingStrategy {
-  preload(route: Route, load: () => Observable<any>): Observable<any> {
-    return route.data && route.data['preload'] ? load() : of(null);
+  constructor(private router: Router) {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        console.log('Navigation ended:', event);
+      }
+    });
   }
-}
-```
-Configure it in the routing module:
+  ```
+  
+## Route Resolvers
+!!! note  
+      Resolvers allow you to pre-fetch data before navigating to a route. This is useful for loading essential data upfront to avoid displaying partially-loaded views.
 
-```typescript
+        Define a resolver service:
 
-const routes: Routes = [
-  { path: 'feature', loadChildren: () => import('./feature/feature.module').then(m => m.FeatureModule), data: { preload: true } }
-];
+  ```typescript
 
-@NgModule({
-  imports: [RouterModule.forRoot(routes, { preloadingStrategy: CustomPreloadingStrategy })],
-  providers: [CustomPreloadingStrategy]
-})
-export class AppRoutingModule {}
-```
-4. Route Animations
-Angular allows you to animate transitions between routes, which enhances the user experience in complex applications.
+  import { Injectable } from '@angular/core';
+  import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
+  import { Observable } from 'rxjs';
+  import { UserService } from './user.service';
 
-Example of a route animation:
+  @Injectable({ providedIn: 'root' })
+  export class UserResolver implements Resolve<User> {
+    constructor(private userService: UserService) {}
 
-```typescript
+    resolve(route: ActivatedRouteSnapshot): Observable<User> {
+      return this.userService.getUser(route.paramMap.get('id'));
+    }
+  } 
+  ```
+  Use it in your route configuration:
 
-import { trigger, transition, style, animate } from '@angular/animations';
+  ```typescript
 
-export const slideInAnimation = 
-  trigger('routeAnimations', [
-    transition('* <=> *', [
-      style({ opacity: 0 }),
-      animate('500ms', style({ opacity: 1 }))
-    ])
-  ]);
-Apply this animation to <router-outlet>:
+  { 
+    path: 'user/:id', 
+    component: UserComponent,
+    resolve: { user: UserResolver }
+  }
+  ```
+  Access the resolved data in the component:
 
-html
+  ```typescript
 
-<div [@routeAnimations]="o.isActivated ? o.activatedRoute : ''">
-  <router-outlet #o="outlet"></router-outlet>
-</div>
-5. Multiple Router Outlets
-For more complex layouts, you can define multiple router outlets, each with its own set of routes.
+  ngOnInit() {
+    this.route.data.subscribe(data => {
+      this.user = data['user'];
+    });
+  }
+  ```
+##  Preloading Modules
+!!! note 
+      Preloading improves performance by loading lazy-loaded modules in the background, so they're ready if needed. Angular provides built-in preloading strategies:
 
-```html
+      NoPreloading (default): Modules are not preloaded.
+      PreloadAllModules: All lazy-loaded modules are preloaded.
+      Enable preloading in the RouterModule:
 
-<router-outlet name="primary"></router-outlet>
-<router-outlet name="sidebar"></router-outlet>
-Then specify the outlets in your routes:
-```
+  ```typescript
 
-```typescript
+  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })]
+  ```
 
-const routes: Routes = [
-  { path: 'main', component: MainComponent, outlet: 'primary' },
-  { path: 'sidebar', component: SidebarComponent, outlet: 'sidebar' }
-];
-```
-6. Route Reuse Strategy
-Angular provides a way to control the reuse of route components, which can be helpful for performance. You can implement a custom RouteReuseStrategy to cache certain components and improve loading times.
+ ## Custom Preloading Strategy
+ !!! note 
+        You can create a custom preloading strategy for more granular control over which modules to preload.
 
-7. Lazy Loading Modules with Custom Selectors
-Instead of loading a module with the loadChildren property directly in the route, you can create custom functions that allow finer control, like conditionally loading modules based on user permissions.
+        Example of a custom preloading strategy:
 
-8. Hash-based Routing
-By default, Angular uses HTML5 routing (e.g., /about). However, for certain cases like legacy server setups that don’t support path-based routing, you can switch to hash-based routing (e.g., /#/about) using:
+  ```typescript
 
-```typescript
+  import { PreloadingStrategy, Route } from '@angular/router';
+  import { Observable, of } from 'rxjs';
 
-RouterModule.forRoot(routes, { useHash: true })
-```
-9. Configuring Scroll Position Restoration
-By default, Angular does not restore scroll positions when navigating. You can enable scroll position restoration in RouterModule:
+  export class CustomPreloadingStrategy implements PreloadingStrategy {
+    preload(route: Route, load: () => Observable<any>): Observable<any> {
+      return route.data && route.data['preload'] ? load() : of(null);
+    }
+  }
+  ```
+  Configure it in the routing module:
+
+  ```typescript
+
+  const routes: Routes = [
+    { path: 'feature', loadChildren: () => import('./feature/feature.module').then(m => m.FeatureModule), data: { preload: true } }
+  ];
+
+  @NgModule({
+    imports: [RouterModule.forRoot(routes, { preloadingStrategy: CustomPreloadingStrategy })],
+    providers: [CustomPreloadingStrategy]
+  })
+  export class AppRoutingModule {}
+  ```
+  ## Route Animations
+  !!! note "Route Animations"
+        Angular allows you to animate transitions between routes, which enhances the user experience in complex applications.
+
+        Example of a route animation:
+
+  ```typescript
+
+  import { trigger, transition, style, animate } from '@angular/animations';
+
+  export const slideInAnimation = 
+    trigger('routeAnimations', [
+      transition('* <=> *', [
+        style({ opacity: 0 }),
+        animate('500ms', style({ opacity: 1 }))
+      ])
+    ]);
+  Apply this animation to <router-outlet>:
+
+  html
+
+  <div [@routeAnimations]="o.isActivated ? o.activatedRoute : ''">
+    <router-outlet #o="outlet"></router-outlet>
+  </div>
+  ```
+# Multiple Router Outlets
+!!! note 
+      For more complex layouts, you can define multiple router outlets, each with its own set of routes.
+
+  ```html
+
+  <router-outlet name="primary"></router-outlet>
+  <router-outlet name="sidebar"></router-outlet>
+  Then specify the outlets in your routes:
+  ```
+
+  ```typescript
+
+  const routes: Routes = [
+    { path: 'main', component: MainComponent, outlet: 'primary' },
+    { path: 'sidebar', component: SidebarComponent, outlet: 'sidebar' }
+  ];
+  ```
+## Strategy  
+!!! note "Strategy"
+      6. Route Reuse Strategy
+      Angular provides a way to control the reuse of route components, which can be helpful for performance. You can implement a custom RouteReuseStrategy to cache certain components and improve loading times.
+
+      7. Lazy Loading Modules with Custom Selectors
+      Instead of loading a module with the loadChildren property directly in the route, you can create custom functions that allow finer control, like conditionally loading modules based on user permissions.
+
+      8. Hash-based Routing
+      By default, Angular uses HTML5 routing (e.g., /about). However, for certain cases like legacy server setups that don’t support path-based routing, you can switch to hash-based routing (e.g., /#/about) using:
+
+  ```typescript
+
+  RouterModule.forRoot(routes, { useHash: true })
+  ```
+  ## Configuring Scroll Position Restoration
+  !!! note 
+        By default, Angular does not restore scroll positions when navigating. You can enable scroll position restoration in RouterModule:
 
 
-```typescript
+  ```typescript
 
-imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' })]
-```
-This will scroll to the top on each navigation or restore to the previous position when the user navigates back.
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' })]
+  ```
+  This will scroll to the top on each navigation or restore to the previous position when the user navigates back.
 
-10. Router Testing
-Test Angular routes to ensure expected navigation behavior. Use Angular’s RouterTestingModule for routing in unit tests.
 
-Example:
+## Router Testing
+  !!! note 
+        Test Angular routes to ensure expected navigation behavior. Use Angular’s RouterTestingModule for routing in unit tests.
 
-```typescript
+  Example:
 
-import { RouterTestingModule } from '@angular/router/testing';
+  ```typescript
 
-TestBed.configureTestingModule({
-  imports: [RouterTestingModule.withRoutes(routes)]
-});
-```
-11. Handling Query Parameters and Fragments
-Query parameters (?key=value) and URL fragments (#section) are commonly used in URLs. To set query parameters:
+  import { RouterTestingModule } from '@angular/router/testing';
 
-```typescript
+  TestBed.configureTestingModule({
+    imports: [RouterTestingModule.withRoutes(routes)]
+  });
+  ```
+  ## Handling Query Parameters and Fragments
+  !!! note 
+        Query parameters (?key=value) and URL fragments (#section) are commonly used in URLs. To set query parameters:
 
-this.router.navigate(['/route'], { queryParams: { filter: 'value' } });
-```
-And to access them in the component:
+  ```typescript
 
-```typescript
+  this.router.navigate(['/route'], { queryParams: { filter: 'value' } });
+  ```
+  And to access them in the component:
 
-this.route.queryParams.subscribe(params => {
-  const filter = params['filter'];
-});
-```
-Similarly, for fragments:
+  ```typescript
 
-```typescript
+  this.route.queryParams.subscribe(params => {
+    const filter = params['filter'];
+  });
+  ```
+  Similarly, for fragments:
 
-this.router.navigate(['/route'], { fragment: 'section' });
-```
-By understanding these concepts, you can take full advantage of Angular's routing capabilities to build a highly interactive, optimized, and user-friendly application.
+  ```typescript
+
+  this.router.navigate(['/route'], { fragment: 'section' });
+  ```
+  By understanding these concepts, you can take full advantage of Angular's routing capabilities to build a highly interactive, optimized, and user-friendly application.
