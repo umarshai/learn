@@ -24,6 +24,7 @@ I’m working on a project for **Optum**, a **US-based healthcare organization**
 - **Onboard clients**
 - Enable clients to create their **own micro-products**
 - Manage their **users efficiently**
+- Basicallly we use micro front end technology with the help of single-spa-framework. which let our clients to crearte and use their m=own apps within our apps.
 
 ### Tech Stack:
 - **Frontend:** Angular (migrating to version 17)  

@@ -1,317 +1,548 @@
-## Methods of sharing data components
-
-In Angular (including Angular 2 and later versions), there are several common ways to share data between components. The method you choose depends on the relationship between the components (parent-child, sibling, or unrelated) and the type of data being shared.
-
-Here are some of the main techniques:
 
 
+| Communication Type|  Use Case |	Data Direction	| 
+| ----------- | ------------------------------------ | ---|
+| @Input()	| Pass data from parent to child	| Parent → Child| 
+| @Output()	| Emit event from child to parent	| Child → Parent| 
+| @ViewChild()| 	Access child component (single)	| Parent → Child| 
+| @ViewChildren()| 	Access multiple child components| 	Parent → Child| 
+| @ContentChild()| 	Access single projected content	| Parent → Child| 
+| @ContentChildren()| 	Access multiple projected contents	| Parent → Child| 
+| Subject	| Share data across unrelated components	| Any → Any| 
+| ng-content	| Project content into a child	| Parent → Child| 
 
-These methods are often more specialized or advanced, useful in scenarios where traditional data-sharing techniques may not be sufficient or optimal.
+
+## Comparison of Methods
+ Communication Scenario|  Recommended Method |	Efficiency Rating	Complexity	| 
+| ----------- | ------------------------------------ | ---|	
+| Parent to Child	| @Input()	| ⭐⭐⭐⭐⭐	Low| 
+| Child to Parent	| @Output()	| ⭐⭐⭐⭐⭐	Low| 
+| Sibling or Unrelated Components	| Service with BehaviorSubject| 	⭐⭐⭐⭐	Medium| 
+| Application-Wide State| 	NgRx, Akita, or NGXS	| ⭐⭐⭐⭐	High| 
+| Content Projection	| ng-content	⭐⭐⭐⭐	Low| 
+| Passing Data via URL| 	Router Parameters	| ⭐⭐⭐⭐	Medium| 
+| Content Projection	| ng-content	| ⭐⭐⭐⭐	Low| 
+| Direct DOM Manipulation| 	ElementRef + Renderer2	| ⭐⭐⭐	Medium| 
+
+## 1. Input() (Parent to Child Communication)
+!!! note "" 
+    * ****
 
 
+    * **Scenario**: You have a ProductListComponent that displays a list of products. When you click on a product, the product details are passed to the ProductDetailsComponent to display more information.
 
 
+    * **Use Case**:  A parent component passes data to a child component..
 
-Let’s walk through practical examples of each data-sharing technique in Angular. This will include code snippets that illustrate how to implement each approach.
 
-## 1. @Input() and @Output() Decorators (Parent-Child Communication)
-
-```typescript console.log('test')```
 
 ```typescript
-Copy code
-// Child component
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-
+// parent component (ProductListComponent)
 @Component({
-  selector: 'child-component',
-  template: `<button (click)="sendData()">Send Data</button>`,
+  selector: 'app-product-list',
+  template: `
+    <app-product-details [product]="selectedProduct"></app-product-details>
+    <button (click)="selectProduct(product)">View Details</button>
+  `
 })
-export class ChildComponent {
-  @Input() parentData: string;
-  @Output() childEvent = new EventEmitter<string>();
-
-  sendData() {
-    this.childEvent.emit("Data from child");
+export class ProductListComponent {
+  selectedProduct: Product | undefined;
+  
+  selectProduct(product: Product) {
+    this.selectedProduct = product;
   }
 }
+// child component (ProductDetailsComponent)
+@Component({
+  selector: 'app-product-details',
+  template: `
+    <div *ngIf="product">
+      <h2>{{ product.name }}</h2>
+      <p>{{ product.description }}</p>
+    </div>
+  `
+})
+export class ProductDetailsComponent {
+  @Input() product!: Product;
+}
 
-// Parent component template
-<child-component [parentData]="dataFromParent" (childEvent)="receiveData($event)"></child-component>
+
 ```
----
 
-# Angular Decorators: `@ViewChild`, `@ViewChildren`, `@ContentChild`, and `@ContentChildren`
+## 2. Output() (Child to Parent Communication)
+!!! note "" 
+    * ** **
 
-Angular provides these decorators to query and interact with components, directives, or elements in a component's **view** or **content projection**.
 
----
+    * **Scenario**: A SearchBarComponent emits the search query to the ProductListComponent to filter the product list.
 
-## Key Differences
 
-| Decorator           | Scope               | Purpose                                                                                   |
-|---------------------|---------------------|-------------------------------------------------------------------------------------------|
-| **@ViewChild**      | Component's View   | Selects a single DOM element, directive, or child component within the component's view.  |
-| **@ViewChildren**   | Component's View   | Selects multiple elements, directives, or components within the component's view.         |
-| **@ContentChild**   | Content Projection | Selects a single projected DOM element, directive, or child component.                    |
-| **@ContentChildren**| Content Projection | Selects multiple projected elements, directives, or components.                           |
+    * **Use Case**: A child component emits an event to the parent component. .
 
----
 
-## 1. **@ViewChild**
 
-### Description
-`@ViewChild` is used to access a single child element, directive, or component located **inside the component's template (view)**.
-
-### Syntax
 ```typescript
-@ViewChild(selector: Type | string, { static?: boolean }): QueryList | ElementRef
+// child component (SearchBarComponent)
+@Component({
+  selector: 'app-search-bar',
+  template: `
+    <input type="text" (input)="onSearch($event.target.value)" placeholder="Search products">
+  `
+})
+export class SearchBarComponent {
+  @Output() searchQuery = new EventEmitter<string>();
+
+  onSearch(query: string) {
+    this.searchQuery.emit(query);
+  }
+}
+
+// parent component (ProductListComponent)
+@Component({
+  selector: 'app-product-list',
+  template: `
+    <app-search-bar (searchQuery)="filterProducts($event)"></app-search-bar>
+    <div *ngFor="let product of filteredProducts">{{ product.name }}</div>
+  `
+})
+export class ProductListComponent {
+  filteredProducts: Product[] = [];
+
+  filterProducts(query: string) {
+    // Filter logic here
+  }
+}
+
+
+```
+## ViewChild() (Parent Accessing Child)
+!!! note "" 
+    * ** **
+
+
+    * **Scenario**: A FormComponent has a ChildInputComponent, and the parent needs to reset the form input.
+
+
+    * **Use Case**:  A parent component accesses a child component's properties or methods..
+
+
+
+```typescript
+// child component (ChildInputComponent)
+@Component({
+  selector: 'app-child-input',
+  template: `<input type="text" #inputBox>`
+})
+export class ChildInputComponent {
+  reset() {
+    this.inputBox.nativeElement.value = '';
+  }
+
+  @ViewChild('inputBox') inputBox!: ElementRef;
+}
+
+// parent component (FormComponent)
+@Component({
+  selector: 'app-form',
+  template: `
+    <app-child-input></app-child-input>
+    <button (click)="resetInput()">Reset</button>
+  `
+})
+export class FormComponent {
+  @ViewChild(ChildInputComponent) childInput!: ChildInputComponent;
+
+  resetInput() {
+    this.childInput.reset();
+  }
+}
+
+
 ```
 
-### 2. Shared Service (Any Component)
-typescript
-Copy code
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+## ViewChildren() (Access Multiple Child Components)
+!!! note "" 
+    * ** **
 
-@Injectable({ providedIn: 'root' })
-export class SharedService {
-  private messageSource = new BehaviorSubject<string>("default message");
-  currentMessage = this.messageSource.asObservable();
 
-  changeMessage(message: string) {
-    this.messageSource.next(message);
-  }
-}
+    * **Scenario**: Access multiple child components.
 
-// Component A: Update message
-constructor(private sharedService: SharedService) {}
-this.sharedService.changeMessage("Hello from Component A");
 
-// Component B: Subscribe to message
-this.sharedService.currentMessage.subscribe(message => {
-  console.log(message);
-});
-3. Template Reference Variables (Parent-Child Communication)
-html
-Copy code
-<!-- Parent component template -->
-<child-component #childComp></child-component>
-<button (click)="childComp.someMethod()">Call Child Method</button>
-4. @ViewChild and @ViewChildren (Parent-Child Communication)
-typescript
-Copy code
-// Parent component
-import { Component, ViewChild } from '@angular/core';
-import { ChildComponent } from './child.component';
+    * **Use Case**:  A TabContainerComponent manages multiple TabComponent instances..
 
+
+
+```typescript
+// child component (TabComponent)
 @Component({
-  selector: 'parent-component',
-  template: `<child-component></child-component>`,
+  selector: 'app-tab',
+  template: `<ng-content></ng-content>`
 })
-export class ParentComponent {
-  @ViewChild(ChildComponent) child: ChildComponent;
+export class TabComponent {}
 
-  ngAfterViewInit() {
-    this.child.someMethod();
-  }
-}
-5. Router Parameters (Unrelated Components)
-typescript
-Copy code
-// Navigate and pass data
-this.router.navigate(['/path', data]);
-
-// Receiving component
-constructor(private route: ActivatedRoute) {}
-this.route.params.subscribe(params => {
-  console.log(params['id']);
-});
-6. Input Setter (Parent-Child Communication)
-typescript
-Copy code
-// Child component
-import { Component, Input } from '@angular/core';
-
+// parent component (TabContainerComponent)
 @Component({
-  selector: 'child-component',
-  template: `<p>{{processedData}}</p>`,
+  selector: 'app-tab-container',
+  template: `
+    <app-tab></app-tab>
+    <app-tab></app-tab>
+    <button (click)="logTabs()">Log Tabs</button>
+  `
 })
-export class ChildComponent {
-  processedData: string;
+export class TabContainerComponent {
+  @ViewChildren(TabComponent) tabs!: QueryList<TabComponent>;
 
-  @Input() set parentData(value: string) {
-    this.processedData = value.toUpperCase();
+  logTabs() {
+    console.log(this.tabs.length); // Logs number of tabs
   }
 }
-7. Local Storage/Session Storage (Any Component)
-typescript
-Copy code
-// Set data in local storage
-localStorage.setItem('key', JSON.stringify(data));
 
-// Retrieve data
-let retrievedData = JSON.parse(localStorage.getItem('key'));
-8. NgRx Store (Application-Wide)
-typescript
-Copy code
-// Action definition
-import { createAction, props } from '@ngrx/store';
-export const updateData = createAction('[Data] Update', props<{ data: string }>());
 
-// Reducer function
-export const dataReducer = createReducer(
-  initialState,
-  on(updateData, (state, { data }) => ({ ...state, data }))
-);
+```
 
-// Component to dispatch action
-this.store.dispatch(updateData({ data: 'New data' }));
+## 
+!!! note "" 
+    * ** **
 
-// Component to select state
-this.store.select('data').subscribe(data => console.log(data));
-9. Event Bus (Using Angular’s EventEmitter in Services)
-typescript
-Copy code
-import { Injectable, EventEmitter } from '@angular/core';
 
+    * **Scenario**: 
+
+
+    * **Use Case**:  .
+
+
+
+```typescript
+
+
+```
+## 5. ContentChild() (Access Projected Content)
+!!! note "" 
+    * ** **
+
+
+    * **Scenario**: A ModalComponent accesses a projected title from the parent.
+
+
+    * **Use Case**:  Access a single projected child element..
+
+
+
+```typescript
+// modal component (ModalComponent)
+@Component({
+  selector: 'app-modal',
+  template: `<ng-content></ng-content>`
+})
+export class ModalComponent {
+  @ContentChild('title') title!: ElementRef;
+}
+
+// parent component (AppComponent)
+@Component({
+  selector: 'app-root',
+  template: `
+    <app-modal>
+      <h1 #title>Modal Title</h1>
+    </app-modal>
+  `
+})
+export class AppComponent {}
+
+
+```
+## 6. ContentChildren() (Access Multiple Projected Content Elements)
+!!! note "" 
+    * ** **
+
+
+    * **Scenario**: ContentChildren() (Access Multiple Projected Content Elements)
+
+
+    * **Use Case**:  Access multiple projected children..
+
+
+
+```typescript
+@Component({
+  selector: 'app-list',
+  template: `
+    <ng-content></ng-content>
+    <button (click)="logItems()">Log Items</button>
+  `
+})
+export class ListComponent {
+  @ContentChildren('item') items!: QueryList<ElementRef>;
+
+  logItems() {
+    console.log(this.items.length); // Logs the number of items
+  }
+}
+
+
+```
+
+## 7. Subject (Observable Pattern) (Cross-Component Communication)
+!!! note "" 
+    * ** **
+
+
+    * **Scenario**: A UserService shares login status between NavbarComponent and SidebarComponent.
+
+
+    * **Use Case**:  Share data between unrelated components..
+
+
+
+```typescript
+
+// service (UserService)
 @Injectable({ providedIn: 'root' })
-export class EventBusService {
-  public eventEmitter = new EventEmitter<any>();
+export class UserService {
+  private loginStatus = new Subject<boolean>();
+
+  loginStatus$ = this.loginStatus.asObservable();
+
+  updateLoginStatus(status: boolean) {
+    this.loginStatus.next(status);
+  }
 }
 
-// Emitting an event in one component
-this.eventBusService.eventEmitter.emit(data);
+// component (NavbarComponent)
+@Component({
+  selector: 'app-navbar',
+  template: `{{ isLoggedIn ? 'Logout' : 'Login' }}`
+})
+export class NavbarComponent {
+  isLoggedIn = false;
 
-// Listening for events in another component
-this.eventBusService.eventEmitter.subscribe(data => {
-  console.log(data);
-});
-10. Injection Tokens (DI Tokens)
-typescript
-Copy code
-import { InjectionToken } from '@angular/core';
-
-export const CONFIG_TOKEN = new InjectionToken<string>('config');
-
-// Provide token in app module
-providers: [{ provide: CONFIG_TOKEN, useValue: 'my-config-data' }]
-
-// Inject token in a component
-constructor(@Inject(CONFIG_TOKEN) public config: string) {
-  console.log(config);
+  constructor(private userService: UserService) {
+    this.userService.loginStatus$.subscribe(status => {
+      this.isLoggedIn = status;
+    });
+  }
 }
-11. @HostListener and @HostBinding (Event-Based Communication)
-typescript
-Copy code
-import { Directive, HostListener, HostBinding } from '@angular/core';
 
+```
+## 8. ng-content (Content Projection)
+!!! note "" 
+    * ** **
+
+
+    * **Scenario**: A CardComponent accepts content for a header, body, and footer.
+
+
+    * **Use Case**:  Pass markup from a parent to a child component..
+
+
+
+```typescript
+// child component (CardComponent)
+@Component({
+  selector: 'app-card',
+  template: `
+    <div class="card">
+      <ng-content select="[header]"></ng-content>
+      <ng-content select="[body]"></ng-content>
+      <ng-content select="[footer]"></ng-content>
+    </div>
+  `
+})
+export class CardComponent {}
+
+<!-- parent component -->
+<app-card>
+  <div header>Card Header</div>
+  <div body>Card Body</div>
+  <div footer>Card Footer</div>
+</app-card>
+
+
+```
+
+
+## 9. Service with BehaviorSubject (Cross-Component Communication with State Management)
+!!! note "" 
+    * ** **
+
+
+    * **Scenario**: A CartService tracks items added to the cart and updates both the NavbarComponent (showing the cart icon with the number of items) and the CartComponent (displaying the list of items).
+
+
+    * **Use Case**: Maintain shared state across multiple components in a more reactive way. .
+
+
+
+```typescript
+
+// cart.service.ts
+@Injectable({ providedIn: 'root' })
+export class CartService {
+  private cartItems = new BehaviorSubject<Product[]>([]);
+  cartItems$ = this.cartItems.asObservable();
+
+  addItem(product: Product) {
+    const currentItems = this.cartItems.value;
+    this.cartItems.next([...currentItems, product]);
+  }
+}
+
+// component (NavbarComponent)
+@Component({
+  selector: 'app-navbar',
+  template: `<span>Cart ({{ itemCount }})</span>`
+})
+export class NavbarComponent {
+  itemCount = 0;
+
+  constructor(private cartService: CartService) {
+    this.cartService.cartItems$.subscribe(items => {
+      this.itemCount = items.length;
+    });
+  }
+}
+
+```
+
+## 11. Local Storage / Session Storage (Browser Storage for Persisting Data)
+!!! note "" 
+    * ** **
+
+
+    * **Scenario**: Storing user preferences such as theme selection (dark mode or light mode) and sharing it across components.
+
+
+    * **Use Case**:  Persist data between component interactions or page reloads..
+
+
+
+```typescript
+// theme.service.ts
+@Injectable({ providedIn: 'root' })
+export class ThemeService {
+  setTheme(theme: string) {
+    localStorage.setItem('theme', theme);
+  }
+
+  getTheme(): string {
+    return localStorage.getItem('theme') || 'light';
+  }
+}
+// component (AppComponent)
+@Component({
+  selector: 'app-root',
+  template: `
+    <button (click)="toggleTheme()">Toggle Theme</button>
+  `
+})
+export class AppComponent {
+  constructor(private themeService: ThemeService) {}
+
+  toggleTheme() {
+    const currentTheme = this.themeService.getTheme();
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    this.themeService.setTheme(newTheme);
+  }
+}
+
+
+```
+
+## 13. Router (Route Parameters and Query Parameters) (Data Sharing via URL)
+!!! note "" 
+    * ** **
+
+
+    * **Scenario**: Pass a product ID from a ProductListComponent to a ProductDetailsComponent through the route.
+
+
+    * **Use Case**:  Pass data through the URL when navigating between components..
+
+
+
+```typescript
+
+// product-list.component.ts
+@Component({
+  selector: 'app-product-list',
+  template: `
+    <a [routerLink]="['/product', product.id]">View Details</a>
+  `
+})
+export class ProductListComponent {
+  product = { id: 1, name: 'Product A' };
+}
+// product-details.component.ts
+@Component({
+  selector: 'app-product-details',
+  template: `
+    <div>Product ID: {{ productId }}</div>
+  `
+})
+export class ProductDetailsComponent {
+  productId!: number;
+
+  constructor(private route: ActivatedRoute) {
+    this.route.params.subscribe(params => {
+      this.productId = +params['id'];
+    });
+  }
+}
+
+```
+
+## 14. @HostListener (Listening to Events from Parent or Host Component)
+!!! note "" 
+    * ** **
+
+
+    * **Scenario**: A ScrollSpyDirective listens to scroll events to highlight the active section in a navbar.
+
+
+    * **Use Case**:  Listen for events triggered on the host element or parent component..
+
+
+
+```typescript
 @Directive({
-  selector: '[appHighlight]'
+  selector: '[appScrollSpy]'
 })
-export class HighlightDirective {
-  @HostBinding('class.highlight') isHighlighted = false;
+export class ScrollSpyDirective {
+  @HostListener('window:scroll', ['$event'])
+  onScroll(event: Event) {
+    // Scroll logic here
+    console.log('Scrolling...');
+  }
+}
+
+
+```
+
+## 15. ElementRef with Renderer2 (Direct DOM Manipulation)
+!!! note "" 
+    * ** **
+
+
+    * **Scenario**: A TooltipDirective shows a tooltip when hovering over a button.
+
+
+    * **Use Case**:  Pass data or interact with the DOM directly between components..
+
+
+
+```typescript
+@Directive({
+  selector: '[appTooltip]'
+})
+export class TooltipDirective {
+  constructor(private el: ElementRef, private renderer: Renderer2) {}
 
   @HostListener('mouseenter') onMouseEnter() {
-    this.isHighlighted = true;
-  }
-
-  @HostListener('mouseleave') onMouseLeave() {
-    this.isHighlighted = false;
+    const tooltip = this.renderer.createElement('span');
+    this.renderer.appendChild(this.el.nativeElement, tooltip);
   }
 }
-12. @ngrx/component-store (Component-Level State Management)
-typescript
-Copy code
-import { Injectable } from '@angular/core';
-import { ComponentStore } from '@ngrx/component-store';
 
-interface CounterState {
-  count: number;
-}
 
-@Injectable()
-export class CounterStore extends ComponentStore<CounterState> {
-  readonly count$ = this.select(state => state.count);
+```
 
-  constructor() {
-    super({ count: 0 });
-  }
-
-  readonly increment = this.updater(state => ({ count: state.count + 1 }));
-}
-13. Portal-Based Communication (Angular CDK Portals)
-typescript
-Copy code
-import { ComponentPortal, PortalInjector } from '@angular/cdk/portal';
-import { Component, Inject, ViewContainerRef, Injector } from '@angular/core';
-
-@Component({
-  selector: 'app-root',
-  template: `<ng-template cdkPortalOutlet></ng-template>`
-})
-export class AppComponent {
-  constructor(private viewContainerRef: ViewContainerRef) {}
-
-  openComponent() {
-    const componentPortal = new ComponentPortal(MyComponent);
-    this.viewContainerRef.createComponent(componentPortal);
-  }
-}
-14. Custom Event Emitters with Observables (for Cross-Component Events)
-typescript
-Copy code
-import { Injectable } from '@angular/core';
-import { Subject, Observable } from 'rxjs';
-
-@Injectable({ providedIn: 'root' })
-export class CustomEventService {
-  private eventSubject = new Subject<any>();
-
-  emitEvent(data: any) {
-    this.eventSubject.next(data);
-  }
-
-  getEvent(): Observable<any> {
-    return this.eventSubject.asObservable();
-  }
-}
-15. Directive-Based Communication
-typescript
-Copy code
-import { Directive, HostListener, Output, EventEmitter } from '@angular/core';
-
-@Directive({
-  selector: '[appCustomDirective]'
-})
-export class CustomDirective {
-  @Output() customEvent = new EventEmitter<any>();
-
-  @HostListener('click', ['$event'])
-  onClick(event: Event) {
-    this.customEvent.emit('Clicked');
-  }
-}
-16. Dynamic Components with ComponentFactoryResolver
-typescript
-Copy code
-import { Component, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
-
-@Component({
-  selector: 'app-root',
-  template: `<button (click)="loadComponent()">Load Component</button>`
-})
-export class AppComponent {
-  constructor(
-    private viewContainerRef: ViewContainerRef,
-    private cfr: ComponentFactoryResolver
-  ) {}
-
-  loadComponent() {
-    const componentFactory = this.cfr.resolveComponentFactory(DynamicComponent);
-    this.viewContainerRef.clear();
-    const componentRef = this.viewContainerRef.createComponent(componentFactory);
-    componentRef.instance.data = "Dynamic data";
-  }
-}
-These examples cover various approaches for data sharing in Angular applications, depending on the specific requirements and relationships between components.

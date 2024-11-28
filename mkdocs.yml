@@ -68,21 +68,21 @@ nav:
       - problems: js/problems.md
       - Typescript: typescript/typescript.md
 
-  - Html:
+  - Html & css:
     - concepts: html/concepts.md
     - samples: html/samples.md
-  - Css:
-      - concepts: css/concepts.md
-      - sass: css/sass.md
-      - samples: css/samples.md
+    - Css:
+        - concepts: css/concepts.md
+        - sass: css/sass.md
+        - samples: css/samples.md
   - Best Practices:
       - Best Practices: best-practices/best-practices.md
       - Accesibility: best-practices/accesibility.md
       - Seo: best-practices/seo.md
-  - Frequently Asked Questions:  interview-exp.md
-  - Programs:
-      - Interview Programs: programs/interview-programs.md
-      - Practice Programs: programs/practice-programs.md
+      - Frequently Asked Questions:  interview-exp.md
+      - Programs:
+        - Interview Programs: programs/interview-programs.md
+        - Practice Programs: programs/practice-programs.md
  
 markdown_extensions:
   - admonition

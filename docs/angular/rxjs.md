@@ -378,10 +378,9 @@ from(promise).subscribe(data => {
 
 
 ##
-!!! note "Map" 
+!!! note "tap" 
     * ** Performs a side effect for each emission, such as logging or updating UI, without modifying the emitted value.**
-    * **Scenario**: Logging API Response
-You want to log the API response for debugging purposes but don’t want to modify the data.
+    * **Scenario**: Logging API Response.You want to log the API response for debugging purposes but don’t want to modify the data.
 
     * **Use Case**: Use tap for logging, triggering side effects, or updating UI elements without affecting the data flow.
 
@@ -520,8 +519,8 @@ chatMessages$.subscribe(message => {
 
 
 ## Async Subjects
-!!! note "An AsyncSubject emits only the last value and only when the observable completes." 
-    * ** **
+!!! note "Async Subjects" 
+    * **An AsyncSubject emits only the last value and only when the observable completes. **
     * **Scenario**: API Request with Caching.you make an expensive API request, and you want all subscribers to receive the same final result when the request completes.
 
     * **Use Case**:  Use AsyncSubject when you only care about the final value after completion (e.g., caching API results, configuration loading).

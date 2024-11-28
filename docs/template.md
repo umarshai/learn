@@ -3,6 +3,11 @@
 ## Title
 ### Anchor
 
+# table
+
+| |   |		| |
+| ----------- | ------------------------------------ | ---|---| 
+
 
 ### accordion
 
@@ -13,6 +18,24 @@
 
 
 ### code template
+```typescript
+
+
+```
+
+For note card
+## 
+!!! note "" 
+    * ** **
+
+
+    * **Scenario**: 
+
+
+    * **Use Case**:  .
+
+
+
 ```typescript
 
 
