@@ -3,7 +3,7 @@
   <summary><strong>1. remove duplicates without using set</strong></summary>
     1.using foreach and includes() method.
     2.using filter to get index of each element to match with current index 
-
+    3.Remove duplicates in without using predefine methods
 
 ```typescript
 let data = [3, 5, , 1, 1, 1, 1, 2, 3];
@@ -56,4 +56,7 @@ points.sort(function(a, b){return a-b});
 </details>
 
  
+ <details><summary>stirng: convert each word first letter to capital form a sentence</summary>
+ let sent = ' modify the sentence first letter of each word';
+ </details>
       
