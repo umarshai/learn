@@ -6,6 +6,7 @@
         * Routing
         * Core
         * Pipes
+        * ngRx
         * Optimization
         * Best Practicces
         * Testing

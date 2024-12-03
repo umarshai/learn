@@ -1,4 +1,8 @@
-# Achieving Accessibility and SEO for Angular Apps
+## Angular App optimization
+https://www.scholarhat.com/tutorial/angular/tips-to-optimize-your-angular-application
+https://medium.com/@chandrabhushan1323/how-to-improve-angular-application-performance-fadde3890e71
+
+## Achieving Accessibility and SEO for Angular Apps
 
 ---
 
