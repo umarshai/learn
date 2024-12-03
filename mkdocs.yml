@@ -52,7 +52,9 @@ theme:
         name: Switch to system preference
   # Page tree
 nav:
-  - Home: index.md
+  - Home: 
+      - Home: index.md
+      - CheckList: check-list.md
   - Angular:
       - RxJs: angular/rxjs.md
       - Promises: angular/promise.md
