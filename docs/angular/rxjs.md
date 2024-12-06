@@ -24,6 +24,18 @@ The essential concepts in RxJS which solve async event management are:
   * What is Pull? In Pull systems, the Consumer determines when it receives data from the data Producer. The Producer itself  is unaware of when the data will be delivered to the Consumer.
   * What is Push? In Push systems, the Producer determines when to send data to the Consumer. The Consumer is unaware of when it will receive that data.
 
+  ## Key Differences Between Cold and Hot Observables
+
+| **Feature**          | **Cold Observable**   (observables)                         | **Hot (subjects)Observable**                          |
+|----------------------|-------------------------------------------------|---------------------------------------------|
+| **Data Production**   | Starts when a subscriber subscribes.            | Starts independently of subscribers.        |
+| **Execution**         | Each subscriber has its own execution.          | Shared execution across subscribers.        |
+| **Data Sharing**      | No sharing; each subscriber gets fresh data.    | Shared; all subscribers receive the same data. |
+| **Analogy**           | Watching a movie from the beginning.            | Watching a live TV broadcast.               |
+| **Examples**          | HTTP requests, file reads, `from()` operator.   | Mouse events, WebSockets, `Subject`.        |
+| **Subscriber Timing** | Subscribers receive all emitted values.         | Late subscribers miss past values.          |
+
+
 ---
 ## Basic Example: Observable and Observer
 

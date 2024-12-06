@@ -57,6 +57,37 @@ points.sort(function(a, b){return a-b});
 
  
  <details><summary>stirng: convert each word first letter to capital form a sentence</summary>
- let sent = ' modify the sentence first letter of each word';
+
+  ```typescript
+   
+string1 = 'tets hdsfhjsgfhgds'
+let stringe = string1.split(' ').map(v => v[0].toUpperCase()+v.slice(0)).join(' ');
+console.log(stringe)
+  ```
  </details>
+ <details><summary>flat an array</summary>
+
+    ```typescript
+    const arr =[1,3,4,[3,4,5,[4,6,3]]];
+    const arr2 = [];
+
+    // using flat
+      //  arr2 = arr.flat(3);
+
+    // not using pre-defined
+      function flatArray(data){
+        for(var i=0;i<data.length;i++){
+          if(Array.isArray(data[i])){
+            flatArray(data[i])
+          } else {
+            arr2.push(data[i]);
+          }
+        }
+      }
+      flatArray(arr);
+      console.log(arr2);
+    ```
+ <details>
+
+
       
