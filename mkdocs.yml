@@ -65,6 +65,7 @@ nav:
       - Core: angular/core-concepts.md
       - Testing: angular/testing.md
       - NgRx: angular/ngRx.md
+      - Optimzation: angular/optimizations.md
       - More: angular/more.md
   - JavaScript:
       - concepts: js/concepts.md
