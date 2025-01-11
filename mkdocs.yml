@@ -68,6 +68,7 @@ nav:
       - Optimzation: angular/optimizations.md
       - More: angular/more.md
   - JavaScript:
+      - NamsteJs: js/namasteJs.md
       - concepts: js/concepts.md
       - methods: js/methods.md
       - problems: js/problems.md
