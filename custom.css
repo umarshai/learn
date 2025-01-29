@@ -1,0 +1,11 @@
+code, pre {
+    background-color: #2d2d2d; /* Dark background */
+    color: #f8f8f2; /* Text color */
+    font-family: 'Fira Code', monospace; /* Stylish font */
+}
+
+/* Add custom colors for syntax */
+.highlight .k { color: #66d9ef; } /* Keywords */
+.highlight .s { color: #e6db74; } /* Strings */
+.highlight .c { color: #75715e; } /* Comments */
+.highlight .p { color: #f8f8f2; } /* Punctuation */

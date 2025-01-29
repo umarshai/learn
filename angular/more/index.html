@@ -1,0 +1,2644 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://github.com/umarshai/learn/angular/more/">
+      
+      
+        <link rel="prev" href="../optimizations/">
+      
+      
+        <link rel="next" href="../../js/namasteJs/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.50">
+    
+    
+      
+        <title>More - Learn</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.a40c8224.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#angular-app-optimization" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Learn" class="md-header__button md-logo" aria-label="Learn" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Learn
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              More
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../rxjs/" class="md-tabs__link">
+          
+  
+    
+  
+  Angular
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../js/namasteJs/" class="md-tabs__link">
+          
+  
+    
+  
+  JavaScript
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../html/concepts/" class="md-tabs__link">
+          
+  
+    
+  
+  Html & css
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../best-practices/best-practices/" class="md-tabs__link">
+          
+  
+    
+  
+  Best Practices
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../react/plan/" class="md-tabs__link">
+          
+  
+    
+  
+  React
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Learn" class="md-nav__button md-logo" aria-label="Learn" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Learn
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../.." class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../check-list/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CheckList
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Angular
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Angular
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rxjs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RxJs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../promise/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Promises
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pipes-interceptors/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pipes-Intersceptors
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../share-data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Share Data between Components
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../forms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Forms
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../routing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Routing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../core-concepts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Core
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Testing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ngRx/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NgRx
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../optimizations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Optimzation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    More
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    More
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#angular-app-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Angular App optimization
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#achieving-accessibility-and-seo-for-angular-apps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Achieving Accessibility and SEO for Angular Apps
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#accessibility-in-angular" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accessibility in Angular
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Accessibility in Angular">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-accessibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Accessibility?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-accessibility-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Accessibility Concepts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#angular-accessibility-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Angular Accessibility Best Practices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Angular Accessibility Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-adding-aria-to-a-custom-button-component" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Adding ARIA to a Custom Button Component
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-ensuring-keyboard-navigation-for-a-modal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Ensuring Keyboard Navigation for a Modal
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tools-for-testing-accessibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tools for Testing Accessibility
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seo-for-angular-applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      SEO for Angular Applications
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SEO for Angular Applications">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-seo" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is SEO?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-seo-techniques-for-angular" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key SEO Techniques for Angular
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key SEO Techniques for Angular">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-setting-up-angular-universal-for-ssr" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Setting up Angular Universal for SSR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-adding-json-ld-schema-for-a-product-page" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Adding JSON-LD schema for a product page
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-interview-questions-on-seo-and-accessibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Interview Questions on SEO and Accessibility
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-world-scenario-for-accessibility-and-seo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Real-World Scenario for Accessibility and SEO
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#server-side-rendering-ssr-and-internationalization-i18n-in-angular" class="md-nav__link">
+    <span class="md-ellipsis">
+      Server-Side Rendering (SSR) and Internationalization (i18n) in Angular
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Server-Side Rendering (SSR) and Internationalization (i18n) in Angular">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#server-side-rendering-ssr-in-angular" class="md-nav__link">
+    <span class="md-ellipsis">
+      Server-Side Rendering (SSR) in Angular
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Server-Side Rendering (SSR) in Angular">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-ssr" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is SSR?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#benefits-of-ssr" class="md-nav__link">
+    <span class="md-ellipsis">
+      Benefits of SSR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-does-ssr-work-in-angular" class="md-nav__link">
+    <span class="md-ellipsis">
+      How does SSR work in Angular?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-setting-up-ssr-with-angular-universal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Setting up SSR with Angular Universal
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internationalization-i18n-in-angular" class="md-nav__link">
+    <span class="md-ellipsis">
+      Internationalization (i18n) in Angular
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Internationalization (i18n) in Angular">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-internationalization-i18n" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Internationalization (i18n)?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-concepts-in-angular-i18n" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Concepts in Angular i18n
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-does-angular-i18n-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      How does Angular i18n work?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-of-angular-i18n-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example of Angular i18n Setup
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-interview-questions-on-ssr-and-i18n" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Interview Questions on SSR and i18n
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#real-world-scenarios-for-ssr-and-i18n" class="md-nav__link">
+    <span class="md-ellipsis">
+      Real-World Scenarios for SSR and i18n
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    JavaScript
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            JavaScript
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../js/namasteJs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NamsteJs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../js/concepts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    concepts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../js/methods/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    methods
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../js/problems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    problems
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../typescript/typescript/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Typescript
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Html & css
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Html & css
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../html/concepts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    concepts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../html/samples/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    samples
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Css
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Css
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../css/concepts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    concepts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../css/sass/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sass
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../css/samples/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    samples
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Best Practices
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Best Practices
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../best-practices/best-practices/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Best Practices
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../best-practices/accesibility/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accesibility
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../best-practices/seo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Seo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interview-exp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Frequently Asked Questions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Programs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            Programs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programs/interview-programs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Interview Programs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programs/practice-programs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Practice Programs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    React
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            React
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../react/plan/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Roadmap
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../react/react/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    React
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#angular-app-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Angular App optimization
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#achieving-accessibility-and-seo-for-angular-apps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Achieving Accessibility and SEO for Angular Apps
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#accessibility-in-angular" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accessibility in Angular
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Accessibility in Angular">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-accessibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Accessibility?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-accessibility-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Accessibility Concepts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#angular-accessibility-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Angular Accessibility Best Practices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Angular Accessibility Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-adding-aria-to-a-custom-button-component" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Adding ARIA to a Custom Button Component
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-ensuring-keyboard-navigation-for-a-modal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Ensuring Keyboard Navigation for a Modal
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tools-for-testing-accessibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tools for Testing Accessibility
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seo-for-angular-applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      SEO for Angular Applications
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SEO for Angular Applications">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-seo" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is SEO?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-seo-techniques-for-angular" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key SEO Techniques for Angular
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key SEO Techniques for Angular">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-setting-up-angular-universal-for-ssr" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Setting up Angular Universal for SSR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-adding-json-ld-schema-for-a-product-page" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Adding JSON-LD schema for a product page
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-interview-questions-on-seo-and-accessibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Interview Questions on SEO and Accessibility
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-world-scenario-for-accessibility-and-seo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Real-World Scenario for Accessibility and SEO
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#server-side-rendering-ssr-and-internationalization-i18n-in-angular" class="md-nav__link">
+    <span class="md-ellipsis">
+      Server-Side Rendering (SSR) and Internationalization (i18n) in Angular
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Server-Side Rendering (SSR) and Internationalization (i18n) in Angular">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#server-side-rendering-ssr-in-angular" class="md-nav__link">
+    <span class="md-ellipsis">
+      Server-Side Rendering (SSR) in Angular
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Server-Side Rendering (SSR) in Angular">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-ssr" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is SSR?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#benefits-of-ssr" class="md-nav__link">
+    <span class="md-ellipsis">
+      Benefits of SSR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-does-ssr-work-in-angular" class="md-nav__link">
+    <span class="md-ellipsis">
+      How does SSR work in Angular?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-setting-up-ssr-with-angular-universal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Setting up SSR with Angular Universal
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internationalization-i18n-in-angular" class="md-nav__link">
+    <span class="md-ellipsis">
+      Internationalization (i18n) in Angular
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Internationalization (i18n) in Angular">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-internationalization-i18n" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Internationalization (i18n)?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-concepts-in-angular-i18n" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Concepts in Angular i18n
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-does-angular-i18n-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      How does Angular i18n work?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-of-angular-i18n-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example of Angular i18n Setup
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-interview-questions-on-ssr-and-i18n" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Interview Questions on SSR and i18n
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#real-world-scenarios-for-ssr-and-i18n" class="md-nav__link">
+    <span class="md-ellipsis">
+      Real-World Scenarios for SSR and i18n
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h2 id="angular-app-optimization">Angular App optimization<a class="headerlink" href="#angular-app-optimization" title="Permanent link">&para;</a></h2>
+<p>https://www.scholarhat.com/tutorial/angular/tips-to-optimize-your-angular-application
+https://medium.com/@chandrabhushan1323/how-to-improve-angular-application-performance-fadde3890e71</p>
+<h2 id="achieving-accessibility-and-seo-for-angular-apps">Achieving Accessibility and SEO for Angular Apps<a class="headerlink" href="#achieving-accessibility-and-seo-for-angular-apps" title="Permanent link">&para;</a></h2>
+<hr />
+<h2 id="accessibility-in-angular">Accessibility in Angular<a class="headerlink" href="#accessibility-in-angular" title="Permanent link">&para;</a></h2>
+<h3 id="what-is-accessibility">What is Accessibility?<a class="headerlink" href="#what-is-accessibility" title="Permanent link">&para;</a></h3>
+<p><strong>Answer</strong>:<br />
+Accessibility in web development refers to creating websites and applications that can be used by all people, including those with disabilities. For Angular applications, ensuring accessibility means following best practices to ensure that users with visual, auditory, motor, and cognitive disabilities can interact with the app effectively.</p>
+<h3 id="key-accessibility-concepts">Key Accessibility Concepts<a class="headerlink" href="#key-accessibility-concepts" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>Semantic HTML</strong>: Use meaningful HTML tags such as <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;footer&gt;</code>, <code>&lt;article&gt;</code>, and <code>&lt;section&gt;</code> to ensure that screen readers and other assistive technologies can correctly interpret the structure of the page.</p>
+</li>
+<li>
+<p><strong>ARIA (Accessible Rich Internet Applications)</strong>: ARIA is a set of attributes that enhance accessibility for dynamic content and advanced user interface controls that might not be natively accessible.</p>
+<ul>
+<li><strong>Examples of ARIA roles</strong>:<ul>
+<li><code>role="button"</code> for buttons that are not standard <code>&lt;button&gt;</code> elements.</li>
+<li><code>aria-label="close"</code> for labeling controls for screen readers.</li>
+<li><code>aria-hidden="true"</code> to hide non-interactive elements from screen readers.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Keyboard Navigation</strong>: Ensure that users can navigate your application using only a keyboard. This includes providing clear focus states, managing focus order, and handling keyboard events (e.g., <code>Enter</code>, <code>Space</code>, <code>Tab</code>).</p>
+</li>
+<li>
+<p><strong>Color Contrast and Text Size</strong>: Ensure that your application has a high color contrast ratio and allows for text resizing. Avoid relying solely on color to convey information.</p>
+</li>
+<li>
+<p><strong>Error Messages and Validation</strong>: Provide clear, descriptive error messages for form validation. Use ARIA live regions for dynamic error updates so screen readers announce the changes.</p>
+</li>
+</ul>
+<h3 id="angular-accessibility-best-practices">Angular Accessibility Best Practices<a class="headerlink" href="#angular-accessibility-best-practices" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>Use <code>ngAria</code> module</strong>: Angular has a built-in <strong>ngAria</strong> module to automatically add ARIA attributes to elements, making Angular applications more accessible.</p>
+</li>
+<li>
+<p><strong>Focusable elements</strong>: Ensure elements like buttons, links, inputs, and custom controls are focusable. Use the <code>tabindex</code> attribute where necessary.</p>
+</li>
+<li>
+<p><strong>Custom Components Accessibility</strong>: For custom components like modals, dropdowns, or sliders, use ARIA roles and attributes to make them accessible.</p>
+</li>
+</ul>
+<h4 id="example-adding-aria-to-a-custom-button-component">Example: Adding ARIA to a Custom Button Component<a class="headerlink" href="#example-adding-aria-to-a-custom-button-component" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>&lt;button role=&quot;button&quot; aria-label=&quot;Submit Form&quot; (click)=&quot;submitForm()&quot;&gt;
+  Submit
+&lt;/button&gt;
+</code></pre></div>
+<h4 id="example-ensuring-keyboard-navigation-for-a-modal">Example: Ensuring Keyboard Navigation for a Modal<a class="headerlink" href="#example-ensuring-keyboard-navigation-for-a-modal" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>@HostListener(&#39;keydown&#39;, [&#39;$event&#39;])
+onKeydown(event: KeyboardEvent) {
+  if (event.key === &#39;Escape&#39;) {
+    this.closeModal();
+  }
+}
+</code></pre></div>
+<hr />
+<h2 id="tools-for-testing-accessibility">Tools for Testing Accessibility<a class="headerlink" href="#tools-for-testing-accessibility" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>axe-core</strong>: A popular accessibility testing library that can be integrated into testing frameworks like Jasmine and Karma to automatically detect accessibility issues.</li>
+<li><strong>Chrome Accessibility DevTools</strong>: Chrome DevTools provides built-in accessibility auditing tools.</li>
+</ul>
+<hr />
+<h2 id="seo-for-angular-applications">SEO for Angular Applications<a class="headerlink" href="#seo-for-angular-applications" title="Permanent link">&para;</a></h2>
+<h3 id="what-is-seo">What is SEO?<a class="headerlink" href="#what-is-seo" title="Permanent link">&para;</a></h3>
+<p><strong>Answer</strong>:<br />
+SEO (Search Engine Optimization) refers to the practice of optimizing web pages so they rank higher in search engine results. For Angular applications, SEO is especially challenging because many applications rely heavily on client-side rendering, making it difficult for search engine crawlers to index dynamic content.</p>
+<h3 id="key-seo-techniques-for-angular">Key SEO Techniques for Angular<a class="headerlink" href="#key-seo-techniques-for-angular" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>Server-Side Rendering (SSR) with Angular Universal</strong>:<br />
+   One of the most effective ways to improve SEO in Angular apps is by using Angular Universal for Server-Side Rendering (SSR). SSR generates the HTML content on the server, which is then sent to the browser. This ensures that search engine crawlers can index the fully rendered content.</p>
+<p><strong>Benefits</strong>:
+- Faster initial load time.
+- Improved search engine indexing and crawling.
+- Better social media sharing previews (with rich previews).</p>
+</li>
+</ul>
+<h4 id="example-setting-up-angular-universal-for-ssr">Example: Setting up Angular Universal for SSR<a class="headerlink" href="#example-setting-up-angular-universal-for-ssr" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>ng add @nguniversal/express-engine
+ng serve:ssr  // Start SSR in development mode
+</code></pre></div>
+<ul>
+<li>
+<p><strong>Meta Tags and SEO-friendly URLs</strong>:<br />
+   Use Angular's Meta service to dynamically update meta tags for SEO. This includes the <code>&lt;title&gt;</code>, <code>&lt;meta&gt;</code> tags, and Open Graph tags for social media sharing.</p>
+<p>Use Meta and Title services to set title and description dynamically for different routes.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Meta</span><span class="p">,</span><span class="w"> </span><span class="nx">Title</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/platform-browser&#39;</span><span class="p">;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kr">constructor</span><span class="p">(</span><span class="k">private</span><span class="w"> </span><span class="nx">meta</span><span class="o">:</span><span class="w"> </span><span class="kt">Meta</span><span class="p">,</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="kt">Title</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nx">updateMetaData</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="k">this</span><span class="p">.</span><span class="nx">title</span><span class="p">.</span><span class="nx">setTitle</span><span class="p">(</span><span class="s1">&#39;New Page Title&#39;</span><span class="p">);</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="k">this</span><span class="p">.</span><span class="nx">meta</span><span class="p">.</span><span class="nx">updateTag</span><span class="p">({</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;description&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">content</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Description of the page content&#39;</span><span class="w"> </span><span class="p">});</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="p">}</span>
+</code></pre></div>
+</li>
+<li>
+<p><strong>Lazy Loading for SEO</strong>:<br />
+   Use lazy loading to load modules only when needed, which improves the initial load time and overall performance of the app. SEO can be improved indirectly by ensuring faster load times, which contributes to better rankings.</p>
+</li>
+</ul>
+<p>Lazy loading is enabled by setting up routing with lazy-loaded modules.</p>
+<ul>
+<li><strong>Sitemaps</strong>:<br />
+   Create a sitemap.xml file that helps search engines discover all pages in the application. This is especially important for Single Page Applications (SPA) that might not have traditional page loads.</li>
+</ul>
+<p>Tools like angular-sitemap-generator can be used to automate sitemap generation.</p>
+<ul>
+<li><strong>Structured Data</strong>:<br />
+   Using structured data (JSON-LD or Microdata) helps search engines understand the content on the page more effectively, improving rich snippets in search results.</li>
+</ul>
+<h4 id="example-adding-json-ld-schema-for-a-product-page">Example: Adding JSON-LD schema for a product page<a class="headerlink" href="#example-adding-json-ld-schema-for-a-product-page" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>&lt;script type=&quot;application/ld+json&quot;&gt;
+  {
+    &quot;@context&quot;: &quot;http://schema.org&quot;,
+    &quot;@type&quot;: &quot;Product&quot;,
+    &quot;name&quot;: &quot;Product Name&quot;,
+    &quot;description&quot;: &quot;Product Description&quot;,
+    &quot;image&quot;: &quot;URL_to_image&quot;,
+    &quot;offers&quot;: {
+      &quot;@type&quot;: &quot;Offer&quot;,
+      &quot;priceCurrency&quot;: &quot;USD&quot;,
+      &quot;price&quot;: &quot;99.99&quot;
+    }
+  }
+&lt;/script&gt;
+</code></pre></div>
+<ul>
+<li><strong>SEO-friendly URLs</strong>:<br />
+   Use clean, descriptive, and SEO-friendly URLs in your Angular app. Avoid using hash-based routing (/#/page) and prefer path-based routing (/page), which is more SEO-friendly.</li>
+</ul>
+<p>Angular’s PathLocationStrategy supports clean URLs.</p>
+<hr />
+<h2 id="common-interview-questions-on-seo-and-accessibility">Common Interview Questions on SEO and Accessibility<a class="headerlink" href="#common-interview-questions-on-seo-and-accessibility" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p><strong>What is SSR and why is it important for SEO in Angular?</strong><br />
+<strong>Answer</strong>:<br />
+   SSR (Server-Side Rendering) in Angular, achieved with Angular Universal, is the process of rendering content on the server and sending fully rendered HTML to the browser. It helps with SEO because search engines can crawl the fully rendered content, improving the page’s visibility and ranking in search results.</p>
+</li>
+<li>
+<p><strong>How do you make an Angular application accessible?</strong><br />
+<strong>Answer</strong>:<br />
+   To ensure accessibility, you can:</p>
+</li>
+<li>Use semantic HTML and ARIA attributes.</li>
+<li>Ensure proper keyboard navigation.</li>
+<li>Maintain good color contrast and text resizing.</li>
+<li>Provide descriptive error messages and validation feedback.</li>
+<li>
+<p>Test with tools like axe-core and Chrome Accessibility DevTools.</p>
+</li>
+<li>
+<p><strong>What is the difference between CSR and SSR in terms of SEO?</strong></p>
+<ul>
+<li><strong>CSR (Client-Side Rendering)</strong>: In CSR, content is rendered on the client side, which makes it difficult for search engines to index content properly, as they see an empty page with JavaScript code.</li>
+<li><strong>SSR (Server-Side Rendering)</strong>: In SSR, content is rendered on the server before it is sent to the browser, ensuring that search engines can crawl and index the fully rendered content, improving SEO.</li>
+</ul>
+</li>
+<li>
+<p><strong>How can you improve SEO in Angular if using SSR is not possible?</strong></p>
+<ul>
+<li>Use meta tags dynamically through Angular's Meta and Title services.</li>
+<li>Implement lazy loading to improve load time and performance.</li>
+<li>Ensure that your URLs are clean and descriptive.</li>
+<li>Provide a sitemap to help search engines crawl the site.</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2 id="real-world-scenario-for-accessibility-and-seo">Real-World Scenario for Accessibility and SEO<a class="headerlink" href="#real-world-scenario-for-accessibility-and-seo" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Real-World Use Case</th>
+<th>Angular Implementation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>SEO for Blogs</strong></td>
+<td>Blogs with dynamic content, where SEO is critical for attracting organic traffic.</td>
+<td>Implement SSR with Angular Universal and dynamic meta tags.</td>
+</tr>
+<tr>
+<td><strong>E-commerce Websites</strong></td>
+<td>Online stores need high SEO ranking for products and accessible features for all users.</td>
+<td>Use SSR for SEO, and implement ARIA for accessible product search and navigation.</td>
+</tr>
+<tr>
+<td><strong>Government Websites</strong></td>
+<td>Public websites that need to be accessible for people with disabilities and optimized for search engines.</td>
+<td>Apply ARIA for accessibility and SSR for better indexing and fast load times.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Accessibility in Angular</strong> can be achieved using semantic HTML, ARIA attributes, and ensuring keyboard navigation and error handling.</li>
+<li><strong>SEO in Angular apps</strong> can be improved by using Angular Universal for SSR, setting meta tags dynamically, creating sitemaps, and optimizing URLs.</li>
+<li>Implementing these techniques ensures better user experience and higher search engine rankings.</li>
+</ul>
+<h1 id="server-side-rendering-ssr-and-internationalization-i18n-in-angular">Server-Side Rendering (SSR) and Internationalization (i18n) in Angular<a class="headerlink" href="#server-side-rendering-ssr-and-internationalization-i18n-in-angular" title="Permanent link">&para;</a></h1>
+<hr />
+<h2 id="server-side-rendering-ssr-in-angular">Server-Side Rendering (SSR) in Angular<a class="headerlink" href="#server-side-rendering-ssr-in-angular" title="Permanent link">&para;</a></h2>
+<h3 id="what-is-ssr">What is SSR?<a class="headerlink" href="#what-is-ssr" title="Permanent link">&para;</a></h3>
+<p><strong>Answer</strong>:<br />
+Server-Side Rendering (SSR) refers to the technique of rendering Angular applications on the server rather than in the browser. In SSR, the application is initially rendered on the server, and the generated HTML is sent to the browser. Once the browser receives the HTML, it then loads Angular and takes over the client-side rendering, allowing the app to behave like a single-page application (SPA).</p>
+<h3 id="benefits-of-ssr">Benefits of SSR<a class="headerlink" href="#benefits-of-ssr" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Faster Initial Load</strong>: Since the content is pre-rendered on the server, the browser doesn't have to wait for Angular to compile and render the view.</li>
+<li><strong>Improved SEO</strong>: Search engines can index the content more easily since they see the fully rendered HTML, not just an empty shell.</li>
+<li><strong>Better Performance</strong>: SSR can improve the perceived performance of an application by rendering content on the server first, reducing the time to first meaningful paint.</li>
+<li><strong>Social Media Previews</strong>: When sharing links on social platforms like Facebook or Twitter, the pre-rendered HTML makes it possible to show rich previews (e.g., images, text, etc.).</li>
+</ul>
+<h3 id="how-does-ssr-work-in-angular">How does SSR work in Angular?<a class="headerlink" href="#how-does-ssr-work-in-angular" title="Permanent link">&para;</a></h3>
+<p>Angular's SSR implementation is achieved through <strong>Angular Universal</strong>. Angular Universal is a set of tools and libraries that allow developers to render Angular applications on the server.</p>
+<ul>
+<li><strong>Angular Universal</strong>: This is a platform for building server-side rendered Angular applications. It makes Angular apps capable of rendering HTML on the server side.</li>
+<li><strong>Universal Module</strong>: The Angular app is modularized and can be executed on both the browser and server.</li>
+<li><strong>Prerendering</strong>: Pre-rendering allows a snapshot of the static HTML to be generated for each route, making it easy to cache and serve the content quickly.</li>
+</ul>
+<h3 id="example-setting-up-ssr-with-angular-universal">Example: Setting up SSR with Angular Universal<a class="headerlink" href="#example-setting-up-ssr-with-angular-universal" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>ng add @nguniversal/express-engine
+ng serve:ssr  // Starts the server-side rendered Angular app
+</code></pre></div>
+<hr />
+<h2 id="internationalization-i18n-in-angular">Internationalization (i18n) in Angular<a class="headerlink" href="#internationalization-i18n-in-angular" title="Permanent link">&para;</a></h2>
+<h3 id="what-is-internationalization-i18n">What is Internationalization (i18n)?<a class="headerlink" href="#what-is-internationalization-i18n" title="Permanent link">&para;</a></h3>
+<p><strong>Answer</strong>:<br />
+Internationalization (i18n) is the process of designing an application so that it can be easily adapted to different languages and regions without requiring a major redesign. In Angular, i18n is supported through the Angular i18n module, allowing developers to create applications that can be translated and localized based on the user's locale (language and region).</p>
+<h3 id="key-concepts-in-angular-i18n">Key Concepts in Angular i18n<a class="headerlink" href="#key-concepts-in-angular-i18n" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Locale</strong>: A locale is a combination of the language and region settings. For example, "en-US" for English (United States) and "fr-FR" for French (France).</li>
+<li><strong>Translation</strong>: This refers to providing different translations for the application’s text based on the selected locale.</li>
+<li><strong>Localization (l10n)</strong>: Localization is the adaptation of content, layout, and formatting according to a specific region or culture. This may involve adjusting currency formats, date formats, and more.</li>
+<li><strong>I18n Pipes</strong>: Angular provides pipes like i18nSelect, i18nPlural, and date, which are used for translating content in templates and formatting data.</li>
+</ul>
+<h3 id="how-does-angular-i18n-work">How does Angular i18n work?<a class="headerlink" href="#how-does-angular-i18n-work" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>Marking Text for Translation</strong>: In Angular, we use the <code>i18n</code> attribute to mark content that should be translated. These marked texts will be extracted and translated in the later process.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">&lt;</span><span class="nt">p</span> <span class="na">i18n</span><span class="o">=</span><span class="s">&quot;description|meaning of the text&quot;</span><span class="p">&gt;</span>Hello World!<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</code></pre></div>
+</li>
+<li>
+<p><strong>Generating Translation Files</strong>: Once the content is marked for translation, Angular CLI can extract the marked content and create <code>.xlf</code> files (XML Localization Interchange File Format). These files contain all the text that needs to be translated.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ng<span class="w"> </span>extract-i18n
+</code></pre></div>
+</li>
+<li>
+<p><strong>Translation</strong>: After extraction, the <code>.xlf</code> files are translated into different languages and then merged back into the app. This process can be automated or managed manually.</p>
+</li>
+<li>
+<p><strong>Changing the Locale</strong>: The application can switch locales at runtime using Angular's <code>LOCALE_ID</code> or <code>TranslateService</code> for dynamic language switching.</p>
+</li>
+</ul>
+<h3 id="example-of-angular-i18n-setup">Example of Angular i18n Setup<a class="headerlink" href="#example-of-angular-i18n-setup" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><strong>Marking Text for Translation</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">&lt;</span><span class="nt">p</span> <span class="na">i18n</span><span class="o">=</span><span class="s">&quot;welcome|message to show on homepage&quot;</span><span class="p">&gt;</span>Welcome to the Angular App<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</code></pre></div>
+</li>
+<li>
+<p><strong>Extracting Translation File</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>ng<span class="w"> </span>extract-i18n
+</code></pre></div>
+<p>This will generate a file like <code>messages.xlf</code> containing the text that needs to be translated.</p>
+</li>
+<li>
+<p><strong>Providing Translations</strong><br />
+    Translate the <code>messages.xlf</code> file for different languages, for example, <code>messages.fr.xlf</code> for French.</p>
+</li>
+<li>
+<p><strong>Configuring the Locale in Angular</strong><br />
+    In your Angular module, import the necessary locale and set it up:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">NgModule</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">CommonModule</span><span class="p">,</span><span class="w"> </span><span class="nx">registerLocaleData</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/common&#39;</span><span class="p">;</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">import</span><span class="w"> </span><span class="nx">localeFr</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/common/locales/fr&#39;</span><span class="p">;</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">LOCALE_ID</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="nx">registerLocaleData</span><span class="p">(</span><span class="nx">localeFr</span><span class="p">);</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="kd">@NgModule</span><span class="p">({</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">  </span><span class="nx">providers</span><span class="o">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nx">provide</span><span class="o">:</span><span class="w"> </span><span class="kt">LOCALE_ID</span><span class="p">,</span><span class="w"> </span><span class="nx">useValue</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;fr&#39;</span><span class="w"> </span><span class="p">}]</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="p">})</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">AppModule</span><span class="w"> </span><span class="p">{}</span>
+</code></pre></div>
+<p>This sets the French locale for your Angular application.</p>
+</li>
+</ol>
+<hr />
+<h2 id="common-interview-questions-on-ssr-and-i18n">Common Interview Questions on SSR and i18n<a class="headerlink" href="#common-interview-questions-on-ssr-and-i18n" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p><strong>What is Server-Side Rendering (SSR) and how does it work in Angular?</strong><br />
+<strong>Answer</strong>:<br />
+   Server-Side Rendering (SSR) is the process of rendering content on the server instead of the browser. In Angular, SSR is implemented using Angular Universal, which allows the application to be pre-rendered on the server before sending it to the browser. This improves SEO, performance, and allows for better social media previews.</p>
+</li>
+<li>
+<p><strong>How does SSR improve SEO?</strong><br />
+<strong>Answer</strong>:<br />
+   In traditional client-side rendering, search engine bots only see an empty HTML shell, making it difficult for them to index content. With SSR, the content is pre-rendered on the server, so search engine bots can crawl and index the fully rendered page, improving SEO.</p>
+</li>
+<li>
+<p><strong>What is the difference between SSR and CSR (Client-Side Rendering)?</strong></p>
+<ul>
+<li><strong>SSR (Server-Side Rendering)</strong>: The server generates the HTML content and sends it to the browser, which reduces the time to first meaningful paint and enhances SEO.</li>
+<li><strong>CSR (Client-Side Rendering)</strong>: The browser loads the JavaScript, and Angular renders the content on the client side. This can lead to slower initial loading times and poor SEO unless additional measures like pre-rendering are taken.</li>
+</ul>
+</li>
+<li>
+<p><strong>What is Internationalization (i18n) in Angular?</strong><br />
+<strong>Answer</strong>:<br />
+   Internationalization (i18n) in Angular allows the application to support multiple languages and regions. Angular provides tools to manage translations, formats, and content customization based on the user's locale. The i18n module helps developers build applications that are easily localized by marking text for translation, extracting translations, and configuring different locales.</p>
+</li>
+<li>
+<p><strong>What is the difference between i18n and l10n?</strong></p>
+<ul>
+<li><strong>i18n (Internationalization)</strong>: The process of designing the app so that it can support multiple languages and regions. This includes preparing the app to handle text translation, date formats, and other locale-specific information.</li>
+<li><strong>l10n (Localization)</strong>: The actual adaptation of the application content and design for a specific language or region, such as translating text and adjusting formats for currency, dates, and addresses.</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2 id="real-world-scenarios-for-ssr-and-i18n">Real-World Scenarios for SSR and i18n<a class="headerlink" href="#real-world-scenarios-for-ssr-and-i18n" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Use Case</th>
+<th>ngRx Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>SEO Optimization</strong></td>
+<td>SSR can be used to render content on the server, making it crawlable by search engines.</td>
+<td>SSR ensures content is available to search engines.</td>
+</tr>
+<tr>
+<td><strong>Multilingual Website</strong></td>
+<td>Building a global application that needs to be displayed in multiple languages and regions.</td>
+<td>i18n helps translate and format content per locale.</td>
+</tr>
+<tr>
+<td><strong>Social Media Sharing</strong></td>
+<td>Pre-rendered content ensures rich previews are shown when links are shared on social media.</td>
+<td>SSR generates previewable content.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="summary_1">Summary<a class="headerlink" href="#summary_1" title="Permanent link">&para;</a></h2>
+<p>SSR (Server-Side Rendering) is the process of rendering Angular applications on the server to improve initial load time, SEO, and social media previews. It is achieved with Angular Universal.</p>
+<p>Internationalization (i18n) is the process of preparing an Angular app to support multiple languages and locales. Angular provides tools like i18n pipes, locale settings, and translation file extraction for this.</p>
+<div class="admonition tip">
+<p class="admonition-title">Best Practice</p>
+</div>
+<p>For apps targeting multiple languages or global markets, i18n is essential to make your app adaptable. Use SSR when SEO and performance are critical, especially for content-heavy sites.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.instant", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy - content.tooltips", "navigation.expand", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "content.code.copy"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.60a45f97.min.js"></script>
+      
+        <script src="../../script/countdown.js"></script>
+      
+    
+  </body>
+</html>
